@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #f2efeb;
+  --color-stone: #dedad3;
+  --color-charcoal: #0b0b0a;
+  --color-warm-gray: #7b7f80;
+  --color-accent: #c5a16a;
+  --color-accent-light: #d2b783;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cream text-charcoal antialiased;
+    font-family: var(--font-body);
+    background: #f2efeb;
+  }
+
+  ::selection {
+    @apply bg-accent/20 text-charcoal;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .luxury-border {
+    @apply border border-stone/60;
+  }
+
+  .section-padding {
+    @apply px-6 py-20 md:px-10 md:py-28;
+  }
+
+  .eyebrow {
+    @apply text-[0.68rem] font-medium uppercase tracking-[0.42em] text-accent;
+  }
+
+  .gold-rule {
+    @apply h-px w-16 bg-accent-light/80;
+  }
+
+  .image-polish {
+    @apply shadow-none;
+  }
+
+  .studio-container {
+    @apply mx-auto max-w-[1216px];
+  }
+
+  .studio-link {
+    @apply text-[0.68rem] font-semibold uppercase tracking-[0.38em] text-accent transition-colors hover:text-charcoal;
+  }
+}
