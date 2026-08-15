@@ -4,8 +4,6 @@ export function revalidateStudioContent(paths: string[] = []) {
   const basePaths = [
     "/",
     "/projects",
-    "/references",
-    "/faq",
     "/about",
     "/contact",
     "/admin",
@@ -15,8 +13,6 @@ export function revalidateStudioContent(paths: string[] = []) {
     "/admin/about",
     "/admin/contact",
     "/admin/footer",
-    "/admin/references",
-    "/admin/faqs",
   ];
 
   for (const path of [...basePaths, ...paths]) {

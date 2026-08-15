@@ -8,8 +8,6 @@ const publicRoutes = [
   { path: "/", priority: 1 },
   { path: "/projects", priority: 0.9 },
   { path: "/about", priority: 0.7 },
-  { path: "/references", priority: 0.6 },
-  { path: "/faq", priority: 0.5 },
   { path: "/contact", priority: 0.7 },
 ] as const;
 

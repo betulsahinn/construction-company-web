@@ -23,7 +23,7 @@ export const DEFAULT_SEO = {
 
 export const pageSeo: Record<
   Language,
-  Record<"home" | "projects" | "about" | "references" | "faq" | "contact", { title: string; description: string }>
+  Record<"home" | "projects" | "about" | "contact", { title: string; description: string }>
 > = {
   tr: {
     home: {
@@ -40,16 +40,6 @@ export const pageSeo: Record<
       title: "Biz Kimiz",
       description:
         "Gaziantep merkezli Mehmet Eser Interior Design Studio'nun iç mimarlık yaklaşımı, malzeme dengesi, oran ve zamansız tasarım anlayışı.",
-    },
-    references: {
-      title: "Referanslar",
-      description:
-        "Mehmet Eser Interior Design Studio'nun iç mimarlık, render sunumu ve konsept geliştirme süreçlerinde birlikte çalıştığı markalar.",
-    },
-    faq: {
-      title: "Sık Sorulan Sorular",
-      description:
-        "İç mimarlık projeleri, mimari render sunumları, çalışma süreci ve Mehmet Eser Interior Design Studio hakkında sık sorulan sorular.",
     },
     contact: {
       title: "İletişim",
@@ -72,16 +62,6 @@ export const pageSeo: Record<
       title: "About",
       description:
         "Learn about Mehmet Eser Interior Design Studio's Gaziantep-based interior architecture approach to material balance, proportion, and timeless design.",
-    },
-    references: {
-      title: "References",
-      description:
-        "Selected companies and brands that have worked with Mehmet Eser Interior Design Studio across interior architecture and design presentations.",
-    },
-    faq: {
-      title: "FAQ",
-      description:
-        "Frequently asked questions about interior architecture projects, architectural render presentations, process, and Mehmet Eser Interior Design Studio.",
     },
     contact: {
       title: "Contact",

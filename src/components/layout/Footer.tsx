@@ -39,17 +39,14 @@ export function Footer({
               {toLanguageUppercase(t.nav.navigation, language)}
             </p>
             <nav className="mt-7 flex flex-col gap-4 text-sm text-stone/80">
+              <Link href="/" className="transition-colors hover:text-accent">
+                {t.nav.home}
+              </Link>
               <Link href="/projects" className="transition-colors hover:text-accent">
                 {t.nav.projects}
               </Link>
               <Link href="/about" className="transition-colors hover:text-accent">
                 {t.nav.about}
-              </Link>
-              <Link href="/references" className="transition-colors hover:text-accent">
-                {t.nav.references}
-              </Link>
-              <Link href="/faq" className="transition-colors hover:text-accent">
-                {t.nav.faq}
               </Link>
               <Link href="/contact" className="transition-colors hover:text-accent">
                 {t.nav.contact}

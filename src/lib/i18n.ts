@@ -8,10 +8,9 @@ export const BRAND_NAME = "Mehmet Eser Interior Design Studio";
 export const translations = {
   tr: {
     nav: {
+      home: "Ana Sayfa",
       projects: "Projeler",
       about: "Biz Kimiz",
-      references: "Referanslar",
-      faq: "SSS",
       contact: "İletişim",
       navigation: "Navigasyon",
     },
@@ -72,20 +71,6 @@ export const translations = {
       message: "Mesaj",
       send: "Mesaj Gönder",
     },
-    references: {
-      eyebrow: "Referanslar",
-      title: "Birlikte Çalıştığımız Markalar",
-      intro:
-        "Farklı ölçeklerde iç mimarlık, render sunumu ve konsept geliştirme süreçlerinde birlikte çalıştığımız kurumlar ve markalar.",
-      empty: "Henüz yayınlanmış referans yok.",
-      visit: "Web Sitesi",
-    },
-    faq: {
-      eyebrow: "Sık Sorulan Sorular",
-      title: "Merak Ettikleriniz",
-      intro: "Çalışma alanlarımız, proje sunumları ve stüdyo hakkında sık sorulan sorular.",
-      empty: "Henüz yayınlanmış soru bulunmuyor.",
-    },
     footer: {
       description:
         "Gaziantep merkezli iç mimarlık stüdyosu; malzeme, oran ve sakin detaylarla rafine mekanlar tasarlar.",
@@ -94,10 +79,9 @@ export const translations = {
   },
   en: {
     nav: {
+      home: "Home",
       projects: "Projects",
       about: "About",
-      references: "References",
-      faq: "FAQ",
       contact: "Contact",
       navigation: "Navigation",
     },
@@ -157,20 +141,6 @@ export const translations = {
       email: "Email",
       message: "Message",
       send: "Send Message",
-    },
-    references: {
-      eyebrow: "References",
-      title: "Selected Companies And Brands",
-      intro:
-        "Companies and brands we have worked with across interior architecture, render presentation, and concept development processes.",
-      empty: "No published references yet.",
-      visit: "Website",
-    },
-    faq: {
-      eyebrow: "Frequently Asked Questions",
-      title: "Useful Information",
-      intro: "Common questions about our work, project presentations, and the studio.",
-      empty: "No published questions yet.",
     },
     footer: {
       description:

@@ -13,8 +13,6 @@ const links = [
   { href: "/admin/about", label: "About" },
   { href: "/admin/contact", label: "Contact" },
   { href: "/admin/footer", label: "Footer" },
-  { href: "/admin/references", label: "References" },
-  { href: "/admin/faqs", label: "FAQ" },
 ];
 
 export function AdminSidebar() {

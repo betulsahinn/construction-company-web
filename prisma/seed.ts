@@ -219,41 +219,6 @@ async function main() {
     });
   }
 
-  const defaultFaqs = [
-    {
-      questionEn: "What type of projects do you work on?",
-      answerEn: "We create interior architecture, villa, facade, office, hotel, sample apartment, and commercial space design presentations.",
-      questionTr: "Hangi tür projeler üzerinde çalışıyorsunuz?",
-      answerTr: "İç mimarlık, lüks villa, cephe tasarımı, ofis, otel, örnek daire ve ticari alan projeleri için görsel sunumlar hazırlıyoruz.",
-    },
-    {
-      questionEn: "Can I download project presentations?",
-      answerEn: "Yes. When available, each project page includes a downloadable PDF presentation.",
-      questionTr: "Proje sunumlarını PDF olarak indirebilir miyim?",
-      answerTr: "Evet. PDF sunumu eklenen projelerde proje detay sayfasında indirme butonu yer alır.",
-    },
-    {
-      questionEn: "Where is the studio based?",
-      answerEn: "Mehmet Eser Interior Design Studio is based in Gaziantep.",
-      questionTr: "Stüdyo nerede bulunuyor?",
-      answerTr: "Mehmet Eser Interior Design Studio Gaziantep merkezlidir.",
-    },
-    {
-      questionEn: "Do you provide online client portal features?",
-      answerEn: "No. The website is focused only on portfolio presentation and contact information.",
-      questionTr: "Müşteri paneli veya online revizyon sistemi var mı?",
-      answerTr: "Hayır. Bu web sitesi yalnızca portfolyo sunumu ve iletişim amacıyla tasarlanmıştır.",
-    },
-  ];
-  const faqCount = await prisma.faq.count();
-  if (faqCount === 0) {
-    for (const [sortOrder, faq] of defaultFaqs.entries()) {
-      await prisma.faq.create({ data: { ...faq, sortOrder, published: true } });
-    }
-  } else {
-    console.log("FAQs already exist; skipped default FAQ seeding.");
-  }
-
   console.log("Database seeded successfully.");
   console.log(`Admin account ensured for ${email}. Existing records were left unchanged.`);
 }

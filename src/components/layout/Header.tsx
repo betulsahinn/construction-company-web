@@ -10,10 +10,9 @@ import { toLanguageUppercase, translations, type Language } from "@/lib/i18n";
 import { useLanguagePreference } from "@/lib/use-language";
 
 const navLinks = [
+  { href: "/", labelKey: "home" },
   { href: "/projects", labelKey: "projects" },
   { href: "/about", labelKey: "about" },
-  { href: "/references", labelKey: "references" },
-  { href: "/faq", labelKey: "faq" },
   { href: "/contact", labelKey: "contact" },
 ] as const;
 

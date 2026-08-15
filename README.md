@@ -134,7 +134,7 @@ Seeding is explicit and is never run by install, build, migrations, middleware, 
 npm run db:seed
 ```
 
-The seed only creates missing defaults. Existing users, categories, projects, homepage hero, about/contact/footer settings, and FAQ content are never updated or overwritten, so admin-edited content remains authoritative. Set `ADMIN_EMAIL` and `ADMIN_PASSWORD` before the first production seed; do not use the example credentials in production.
+The seed only creates missing defaults. Existing users, categories, projects, homepage hero, and about/contact/footer settings are never updated or overwritten, so admin-edited content remains authoritative. Set `ADMIN_EMAIL` and `ADMIN_PASSWORD` before the first production seed; do not use the example credentials in production.
 
 ## Cloudflare R2
 
