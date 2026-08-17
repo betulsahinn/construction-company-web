@@ -87,18 +87,18 @@ export function Header({ initialLanguage }: { initialLanguage: Language }) {
       <div className="studio-container flex h-[82px] items-center justify-between px-6 md:px-0">
         <Link
           href="/"
-          aria-label="Mehmet Eser Interior Design Studio homepage"
+          aria-label="Turkuvaz İnşaat homepage"
           onClick={() => setMobileOpen(false)}
           className="block shrink-0 leading-none"
         >
           <SmartImage
-            src="/brand/mehmet-eser-logo.png"
-            alt="Mehmet Eser Interior Design Studio"
+            src="/api/uploads/logo1.jpg"
+            alt="Turkuvaz İnşaat"
             width={800}
             height={200}
             loading="eager"
             fetchPriority="auto"
-            className={cn("h-12 w-auto object-contain md:h-14", !isHome && "invert")}
+            className="h-12 w-auto object-contain md:h-14"
             sizes="(max-width: 768px) 192px, 224px"
           />
         </Link>

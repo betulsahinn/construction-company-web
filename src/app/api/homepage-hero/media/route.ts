@@ -11,7 +11,7 @@ import {
 import { revalidateStudioContent } from "@/lib/revalidate";
 
 const HERO_ID = "homepage";
-const DEFAULT_HERO_IMAGE = "/api/uploads/architecture-residence-dusk.png";
+const DEFAULT_HERO_IMAGE = "/api/uploads/ai-son.png";
 
 export async function POST(request: NextRequest) {
   try {

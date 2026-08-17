@@ -16,6 +16,7 @@ const fields: Array<{
   { key: "businessName", label: "Business Name" },
   { key: "city", label: "City" },
   { key: "phone", label: "Phone" },
+  { key: "email", label: "Email" },
   { key: "instagramUrl", label: "Instagram URL" },
   { key: "instagramHandle", label: "Instagram Handle" },
   { key: "address", label: "Address", textarea: true },

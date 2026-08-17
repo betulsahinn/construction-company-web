@@ -137,6 +137,7 @@ model ContactPage {
   address         String?
   mapsUrl         String?
   phone           String?
+  email           String?
   instagramUrl    String?
   instagramHandle String?
   titleTr         String?
@@ -158,6 +159,7 @@ model FooterSettings {
   address         String?
   mapsUrl         String?
   phone           String?
+  email           String?
   instagramUrl    String?
   instagramHandle String?
   createdAt       DateTime @default(now())

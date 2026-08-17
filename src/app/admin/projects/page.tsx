@@ -22,7 +22,7 @@ export default async function AdminProjectsPage() {
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="font-display text-3xl tracking-wide">Projects</h1>
-          <p className="mt-1 text-sm text-warm-gray">Manage portfolio projects</p>
+          <p className="mt-1 text-sm text-warm-gray">Manage construction projects</p>
         </div>
         <Link
           href="/admin/projects/new"

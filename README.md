@@ -1,6 +1,6 @@
-# Architecture Portfolio v2
+# Turkuvaz İnşaat Website
 
-A database-driven architecture portfolio built with Next.js 15, TypeScript, Tailwind CSS 4, Prisma, and Cloudflare R2. SQLite is supported for local development; production deployments use PostgreSQL.
+A database-driven construction company website built with Next.js 15, TypeScript, Tailwind CSS 4, Prisma, and Cloudflare R2. SQLite is supported for local development; production deployments use PostgreSQL.
 
 ## Database setup
 

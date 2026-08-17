@@ -22,6 +22,7 @@ const fields: Array<{
   { key: "address", label: "Footer Address" },
   { key: "mapsUrl", label: "Footer Google Maps URL" },
   { key: "phone", label: "Footer Phone" },
+  { key: "email", label: "Footer Email" },
   { key: "instagramHandle", label: "Footer Instagram Handle" },
   { key: "instagramUrl", label: "Footer Instagram Link" },
 ];

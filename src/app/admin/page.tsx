@@ -34,7 +34,7 @@ export default async function AdminDashboardPage() {
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="font-display text-3xl tracking-wide">Dashboard</h1>
-          <p className="mt-1 text-sm text-warm-gray">Portfolio overview and quick actions</p>
+          <p className="mt-1 text-sm text-warm-gray">Project overview and quick actions</p>
         </div>
         <Link
           href="/admin/projects/new"

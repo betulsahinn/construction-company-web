@@ -15,6 +15,7 @@ const footerSettingsSchema = z.object({
   address: z.string().nullable().optional(),
   mapsUrl: z.string().nullable().optional(),
   phone: z.string().nullable().optional(),
+  email: z.string().nullable().optional(),
   instagramUrl: z.string().nullable().optional(),
   instagramHandle: z.string().nullable().optional(),
 });

@@ -42,7 +42,7 @@ export function LoginForm() {
     <div className="flex min-h-[80vh] items-center justify-center">
       <div className="w-full max-w-md border border-stone/60 bg-white p-8 md:p-10">
         <h1 className="font-display text-3xl tracking-wide">Admin Login</h1>
-        <p className="mt-2 text-sm text-warm-gray">Sign in to manage your portfolio</p>
+        <p className="mt-2 text-sm text-warm-gray">Sign in to manage your website</p>
 
         {error && (
           <div className="mt-6 rounded border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-700">

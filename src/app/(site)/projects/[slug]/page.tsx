@@ -45,8 +45,8 @@ export async function generateMetadata({ params }: PageProps) {
   const categories = project.categories.map(({ category }) => getCategoryLabel(category, language));
   const fallbackDescription =
     language === "tr"
-      ? `${title}, Mehmet Eser Interior Design Studio tarafından Gaziantep'te hazırlanan iç mimarlık ve tasarım projesi.`
-      : `${title}, an interior architecture and design project by Mehmet Eser Interior Design Studio in Gaziantep, Türkiye.`;
+      ? `${title}, Turkuvaz İnşaat tarafından Gaziantep'te yürütülen bir inşaat projesi.`
+      : `${title}, a construction project by Turkuvaz İnşaat in Gaziantep, Türkiye.`;
   const description = getProjectDescription(project, language) ?? fallbackDescription;
   const coverImage = getProjectCoverImage(project.images[0]);
 

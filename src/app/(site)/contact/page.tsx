@@ -6,6 +6,7 @@ import { prisma } from "@/lib/prisma";
 import {
   CONTACT_SETTINGS_ID,
   getLocalizedContact,
+  getEmailHref,
   getMapsUrl,
   getPhoneHref,
   resolveContactSettings,
@@ -36,6 +37,7 @@ export default async function ContactPage() {
   const contact = getLocalizedContact(settings, language);
   const mapsUrl = getMapsUrl(settings);
   const phoneHref = getPhoneHref(settings.phone);
+  const emailHref = getEmailHref(settings.email);
 
   return (
     <section className="px-6 pb-24 pt-36 md:px-10 md:pb-32 md:pt-40">
@@ -59,6 +61,14 @@ export default async function ContactPage() {
               value={
                 <a href={phoneHref} className="transition-colors hover:text-accent">
                   {settings.phone}
+                </a>
+              }
+            />
+            <ContactRow
+              label={toLanguageUppercase(t.contact.email, language)}
+              value={
+                <a href={emailHref} className="transition-colors hover:text-accent">
+                  {settings.email}
                 </a>
               }
             />

@@ -41,6 +41,7 @@ export type ContactSettingsView = {
   businessName: string;
   city: string;
   phone: string;
+  email: string;
   instagramUrl: string;
   instagramHandle: string;
   address: string;
@@ -61,20 +62,24 @@ export type FooterSettingsView = {
   address: string;
   mapsUrl: string;
   phone: string;
+  email: string;
   instagramUrl: string;
   instagramHandle: string;
 };
 
+const TURKUVAZ_MAPS_URL =
+  "https://www.google.com/maps/place/Turkuaz+%C4%B0n%C5%9Faat/@37.079272,37.3478044,17z/data=!3m1!4b1!4m6!3m5!1s0x1531e17753425355:0x9a47ff81cec8adc0!8m2!3d37.079272!4d37.3478044!16s%2Fg%2F11hrl38v7m";
+
 export const defaultAboutSettings: AboutSettingsView = {
-  eyebrowTr: "Stüdyo",
-  eyebrowEn: "Our Studio",
-  titleTr: "Zamansız Bir Görsel Denge",
-  titleEn: "Design With Enduring Presence",
+  eyebrowTr: "Hakkımızda",
+  eyebrowEn: "About",
+  titleTr: "Güvenilir İnşaat Yaklaşımı",
+  titleEn: "A Reliable Construction Approach",
   descriptionTr:
-    "2020 yılında kurulan Mehmet Eser Interior Design Studio, Gaziantep merkezli bir iç mimarlık stüdyosudur. Malzeme dengesi, oran, detay kalitesi ve zamansız görsel anlatım odağında iç mekan tasarımları, mimari render sunumları ve konsept projeler üretir.",
+    "Turkuvaz İnşaat, Gaziantep merkezli yapı projelerinde kaliteli uygulama, düzenli süreç yönetimi ve müşteri odaklı iletişime önem veren bir inşaat firmasıdır.",
   descriptionEn:
-    "Founded in 2020, Mehmet Eser Interior Design Studio is an interior architecture studio based in Gaziantep, creating refined interiors, architectural render presentations, and design concepts with a focus on material clarity, proportion, and timeless visual quality.",
-  imageUrl: "/api/uploads/architecture-interior-gallery.png",
+    "Turkuvaz İnşaat is a Gaziantep-based construction company focused on quality execution, organized project processes, and customer-oriented communication.",
+  imageUrl: "/api/uploads/ai-son.png",
   imageOriginalUrl: null,
   imageWebUrl: null,
   imageThumbnailUrl: null,
@@ -83,51 +88,53 @@ export const defaultAboutSettings: AboutSettingsView = {
   imageHeight: null,
   imageMimeType: null,
   approachLabelTr: "Yaklaşım",
-  approachLabelEn: "Method",
-  approachTitleTr: "Tasarım yaklaşımı",
+  approachLabelEn: "Approach",
+  approachTitleTr: "Çalışma yaklaşımı",
   approachTitleEn: "Our approach",
-  materialTitleTr: "Malzeme",
-  materialTitleEn: "Material",
-  materialTextTr: "Her projede dokuların, renklerin ve yüzeylerin dengeli bir bütün oluşturmasına odaklanırız.",
-  materialTextEn: "We focus on balanced textures, color, and surfaces that form a calm architectural whole.",
-  proportionTitleTr: "Oran",
-  proportionTitleEn: "Proportion",
-  proportionTextTr: "Mekan kurgusunu insan ölçeği, akış ve görsel sakinlik üzerinden rafine ederiz.",
-  proportionTextEn: "Spatial decisions are refined through human scale, flow, and visual restraint.",
-  narrativeTitleTr: "Anlatım",
-  narrativeTitleEn: "Narrative",
+  materialTitleTr: "Kalite",
+  materialTitleEn: "Quality",
+  materialTextTr: "Projelerde malzeme, uygulama ve detay kararlarının özenli biçimde ele alınmasına odaklanırız.",
+  materialTextEn: "We focus on careful handling of material, execution, and detail decisions throughout each project.",
+  proportionTitleTr: "Güven",
+  proportionTitleEn: "Reliability",
+  proportionTextTr: "Süreç boyunca açık iletişim, düzenli takip ve sorumlu proje yürütme anlayışını önemseriz.",
+  proportionTextEn: "We value clear communication, consistent follow-up, and responsible project coordination.",
+  narrativeTitleTr: "Uygulama",
+  narrativeTitleEn: "Execution",
   narrativeTextTr:
-    "Render sunumları ve konsept görsellerle tasarım fikrini net, güçlü ve zamansız biçimde aktarırız.",
+    "Modern yapı pratikleriyle uyumlu, planlı ve dikkatli uygulama süreçleri geliştirmeyi hedefleriz.",
   narrativeTextEn:
-    "Render presentations and concept visuals communicate each design idea with clarity and permanence.",
+    "We aim to support planned and attentive construction processes aligned with modern building practices.",
 };
 
 export const defaultContactSettings: ContactSettingsView = {
-  businessName: "Mehmet Eser Interior Design Studio",
+  businessName: "Turkuvaz İnşaat",
   city: "Gaziantep",
-  phone: "0544 275 15 95",
-  instagramUrl: "https://www.instagram.com/icmimarmehmeteser/",
-  instagramHandle: "@icmimarmehmeteser",
-  address: "15 Temmuz, 148171 SK NO · 11C T Blok. No:10, 27100 Şehitkamil/Gaziantep",
-  mapsUrl: "https://maps.app.goo.gl/EnqeuKL5mmkkrtji6",
-  titleTr: "Birlikte Özel Bir Mekan Tasarlayalım",
-  titleEn: "Let's Create Something Extraordinary",
-  introTr: "Projenizi, ihtiyaçlarınızı ve mekana dair hedeflerinizi paylaşmak için bizimle iletişime geçin.",
-  introEn: "Share your project, spatial goals, and design needs with the studio.",
+  phone: "0543440409",
+  email: "info@turkuvazinsaat.com",
+  instagramUrl: "https://www.instagram.com/turkuvazinsaat/",
+  instagramHandle: "@turkuvazinsaat",
+  address: "Pancarlı, Abdulkadir Aksu Blv., 27560 Şehitkamil/Gaziantep, Türkiye",
+  mapsUrl: TURKUVAZ_MAPS_URL,
+  titleTr: "Projeniz İçin İletişime Geçin",
+  titleEn: "Contact Us About Your Project",
+  introTr: "Yapı projeniz, teklif talebiniz veya iş birliği konularınız için Turkuvaz İnşaat ile iletişime geçin.",
+  introEn: "Contact Turkuvaz İnşaat for your construction project, quote request, or collaboration needs.",
 };
 
 export const defaultFooterSettings: FooterSettingsView = {
-  brandTitleTr: "Mehmet Eser Interior Design Studio",
-  brandTitleEn: "Mehmet Eser Interior Design Studio",
+  brandTitleTr: "Turkuvaz İnşaat",
+  brandTitleEn: "Turkuvaz İnşaat",
   descriptionTr:
-    "Gaziantep merkezli iç mimarlık stüdyosu; malzeme, oran ve sakin detaylarla rafine mekanlar tasarlar.",
+    "Gaziantep merkezli inşaat firması; yapı projelerinde planlı uygulama ve güvenilir süreç yönetimine odaklanır.",
   descriptionEn:
-    "Interior design studio based in Gaziantep, creating refined spaces through material balance, proportion, and quiet detail.",
+    "Gaziantep-based construction company focused on planned execution and reliable project processes.",
   businessName: defaultContactSettings.businessName,
   city: defaultContactSettings.city,
-  address: "15 Temmuz, Şehitkamil / Gaziantep",
-  mapsUrl: "https://maps.app.goo.gl/EnqeuKL5mmkkrtji6",
+  address: defaultContactSettings.address,
+  mapsUrl: defaultContactSettings.mapsUrl,
   phone: defaultContactSettings.phone,
+  email: defaultContactSettings.email,
   instagramUrl: defaultContactSettings.instagramUrl,
   instagramHandle: defaultContactSettings.instagramHandle,
 };
@@ -149,74 +156,80 @@ function nonEmptyTextValue(value: string | null | undefined, fallback: string) {
 }
 
 export function resolveAboutSettings(settings: AboutSettingsRecord) {
-  const imageUrl = settings
-    ? settings.imageWebUrl ?? settings.imageUrl ?? null
+  const effectiveSettings = isLegacyAboutSettings(settings) ? null : settings;
+  const imageUrl = effectiveSettings
+    ? effectiveSettings.imageWebUrl ?? effectiveSettings.imageUrl ?? null
     : defaultAboutSettings.imageUrl;
 
   return {
     ...defaultAboutSettings,
-    ...settings,
-    eyebrowTr: textValue(settings?.eyebrowTr, defaultAboutSettings.eyebrowTr),
-    eyebrowEn: textValue(settings?.eyebrowEn, defaultAboutSettings.eyebrowEn),
-    titleTr: textValue(settings?.titleTr, defaultAboutSettings.titleTr),
-    titleEn: textValue(settings?.titleEn, defaultAboutSettings.titleEn),
-    descriptionTr: textValue(settings?.descriptionTr, defaultAboutSettings.descriptionTr),
-    descriptionEn: textValue(settings?.descriptionEn, defaultAboutSettings.descriptionEn),
+    ...effectiveSettings,
+    eyebrowTr: textValue(effectiveSettings?.eyebrowTr, defaultAboutSettings.eyebrowTr),
+    eyebrowEn: textValue(effectiveSettings?.eyebrowEn, defaultAboutSettings.eyebrowEn),
+    titleTr: textValue(effectiveSettings?.titleTr, defaultAboutSettings.titleTr),
+    titleEn: textValue(effectiveSettings?.titleEn, defaultAboutSettings.titleEn),
+    descriptionTr: textValue(effectiveSettings?.descriptionTr, defaultAboutSettings.descriptionTr),
+    descriptionEn: textValue(effectiveSettings?.descriptionEn, defaultAboutSettings.descriptionEn),
     imageUrl,
-    approachLabelTr: textValue(settings?.approachLabelTr, defaultAboutSettings.approachLabelTr),
-    approachLabelEn: textValue(settings?.approachLabelEn, defaultAboutSettings.approachLabelEn),
-    approachTitleTr: textValue(settings?.approachTitleTr, defaultAboutSettings.approachTitleTr),
-    approachTitleEn: textValue(settings?.approachTitleEn, defaultAboutSettings.approachTitleEn),
-    materialTitleTr: textValue(settings?.materialTitleTr, defaultAboutSettings.materialTitleTr),
-    materialTitleEn: textValue(settings?.materialTitleEn, defaultAboutSettings.materialTitleEn),
-    materialTextTr: textValue(settings?.materialTextTr, defaultAboutSettings.materialTextTr),
-    materialTextEn: textValue(settings?.materialTextEn, defaultAboutSettings.materialTextEn),
-    proportionTitleTr: textValue(settings?.proportionTitleTr, defaultAboutSettings.proportionTitleTr),
-    proportionTitleEn: textValue(settings?.proportionTitleEn, defaultAboutSettings.proportionTitleEn),
-    proportionTextTr: textValue(settings?.proportionTextTr, defaultAboutSettings.proportionTextTr),
-    proportionTextEn: textValue(settings?.proportionTextEn, defaultAboutSettings.proportionTextEn),
-    narrativeTitleTr: textValue(settings?.narrativeTitleTr, defaultAboutSettings.narrativeTitleTr),
-    narrativeTitleEn: textValue(settings?.narrativeTitleEn, defaultAboutSettings.narrativeTitleEn),
-    narrativeTextTr: textValue(settings?.narrativeTextTr, defaultAboutSettings.narrativeTextTr),
-    narrativeTextEn: textValue(settings?.narrativeTextEn, defaultAboutSettings.narrativeTextEn),
+    approachLabelTr: textValue(effectiveSettings?.approachLabelTr, defaultAboutSettings.approachLabelTr),
+    approachLabelEn: textValue(effectiveSettings?.approachLabelEn, defaultAboutSettings.approachLabelEn),
+    approachTitleTr: textValue(effectiveSettings?.approachTitleTr, defaultAboutSettings.approachTitleTr),
+    approachTitleEn: textValue(effectiveSettings?.approachTitleEn, defaultAboutSettings.approachTitleEn),
+    materialTitleTr: textValue(effectiveSettings?.materialTitleTr, defaultAboutSettings.materialTitleTr),
+    materialTitleEn: textValue(effectiveSettings?.materialTitleEn, defaultAboutSettings.materialTitleEn),
+    materialTextTr: textValue(effectiveSettings?.materialTextTr, defaultAboutSettings.materialTextTr),
+    materialTextEn: textValue(effectiveSettings?.materialTextEn, defaultAboutSettings.materialTextEn),
+    proportionTitleTr: textValue(effectiveSettings?.proportionTitleTr, defaultAboutSettings.proportionTitleTr),
+    proportionTitleEn: textValue(effectiveSettings?.proportionTitleEn, defaultAboutSettings.proportionTitleEn),
+    proportionTextTr: textValue(effectiveSettings?.proportionTextTr, defaultAboutSettings.proportionTextTr),
+    proportionTextEn: textValue(effectiveSettings?.proportionTextEn, defaultAboutSettings.proportionTextEn),
+    narrativeTitleTr: textValue(effectiveSettings?.narrativeTitleTr, defaultAboutSettings.narrativeTitleTr),
+    narrativeTitleEn: textValue(effectiveSettings?.narrativeTitleEn, defaultAboutSettings.narrativeTitleEn),
+    narrativeTextTr: textValue(effectiveSettings?.narrativeTextTr, defaultAboutSettings.narrativeTextTr),
+    narrativeTextEn: textValue(effectiveSettings?.narrativeTextEn, defaultAboutSettings.narrativeTextEn),
   };
 }
 
 export function resolveContactSettings(settings: ContactSettingsRecord) {
+  const effectiveSettings = isLegacyContactSettings(settings) ? null : settings;
+
   return {
     ...defaultContactSettings,
-    ...settings,
-    businessName: textValue(settings?.businessName, defaultContactSettings.businessName),
-    city: textValue(settings?.city, defaultContactSettings.city),
-    phone: textValue(settings?.phone, defaultContactSettings.phone),
-    instagramUrl: textValue(settings?.instagramUrl, defaultContactSettings.instagramUrl),
-    instagramHandle: textValue(settings?.instagramHandle, defaultContactSettings.instagramHandle),
-    address: textValue(settings?.address, defaultContactSettings.address),
-    mapsUrl: textValue(settings?.mapsUrl, defaultContactSettings.mapsUrl),
-    titleTr: textValue(settings?.titleTr, defaultContactSettings.titleTr),
-    titleEn: textValue(settings?.titleEn, defaultContactSettings.titleEn),
-    introTr: textValue(settings?.introTr, defaultContactSettings.introTr),
-    introEn: textValue(settings?.introEn, defaultContactSettings.introEn),
+    ...effectiveSettings,
+    businessName: textValue(effectiveSettings?.businessName, defaultContactSettings.businessName),
+    city: textValue(effectiveSettings?.city, defaultContactSettings.city),
+    phone: textValue(effectiveSettings?.phone, defaultContactSettings.phone),
+    email: textValue(effectiveSettings?.email, defaultContactSettings.email),
+    instagramUrl: textValue(effectiveSettings?.instagramUrl, defaultContactSettings.instagramUrl),
+    instagramHandle: textValue(effectiveSettings?.instagramHandle, defaultContactSettings.instagramHandle),
+    address: textValue(effectiveSettings?.address, defaultContactSettings.address),
+    mapsUrl: textValue(effectiveSettings?.mapsUrl, defaultContactSettings.mapsUrl),
+    titleTr: textValue(effectiveSettings?.titleTr, defaultContactSettings.titleTr),
+    titleEn: textValue(effectiveSettings?.titleEn, defaultContactSettings.titleEn),
+    introTr: textValue(effectiveSettings?.introTr, defaultContactSettings.introTr),
+    introEn: textValue(effectiveSettings?.introEn, defaultContactSettings.introEn),
   };
 }
 
 export function resolveFooterSettings(settings: FooterSettingsRecord, contactSettings?: ContactSettingsView) {
   const contact = contactSettings ?? defaultContactSettings;
+  const effectiveSettings = isLegacyFooterSettings(settings) ? null : settings;
 
   return {
     ...defaultFooterSettings,
-    ...settings,
-    brandTitleTr: textValue(settings?.brandTitleTr, defaultFooterSettings.brandTitleTr),
-    brandTitleEn: textValue(settings?.brandTitleEn, defaultFooterSettings.brandTitleEn),
-    descriptionTr: textValue(settings?.descriptionTr, defaultFooterSettings.descriptionTr),
-    descriptionEn: textValue(settings?.descriptionEn, defaultFooterSettings.descriptionEn),
-    businessName: nonEmptyTextValue(settings?.businessName, contact.businessName),
-    city: nonEmptyTextValue(settings?.city, contact.city),
-    address: nonEmptyTextValue(settings?.address, defaultFooterSettings.address),
-    mapsUrl: nonEmptyTextValue(settings?.mapsUrl, contact.mapsUrl || defaultFooterSettings.mapsUrl),
-    phone: nonEmptyTextValue(settings?.phone, contact.phone),
-    instagramUrl: nonEmptyTextValue(settings?.instagramUrl, contact.instagramUrl),
-    instagramHandle: nonEmptyTextValue(settings?.instagramHandle, contact.instagramHandle),
+    ...effectiveSettings,
+    brandTitleTr: textValue(effectiveSettings?.brandTitleTr, defaultFooterSettings.brandTitleTr),
+    brandTitleEn: textValue(effectiveSettings?.brandTitleEn, defaultFooterSettings.brandTitleEn),
+    descriptionTr: textValue(effectiveSettings?.descriptionTr, defaultFooterSettings.descriptionTr),
+    descriptionEn: textValue(effectiveSettings?.descriptionEn, defaultFooterSettings.descriptionEn),
+    businessName: nonEmptyTextValue(effectiveSettings?.businessName, contact.businessName),
+    city: nonEmptyTextValue(effectiveSettings?.city, contact.city),
+    address: nonEmptyTextValue(effectiveSettings?.address, defaultFooterSettings.address),
+    mapsUrl: nonEmptyTextValue(effectiveSettings?.mapsUrl, contact.mapsUrl || defaultFooterSettings.mapsUrl),
+    phone: nonEmptyTextValue(effectiveSettings?.phone, contact.phone),
+    email: nonEmptyTextValue(effectiveSettings?.email, contact.email),
+    instagramUrl: nonEmptyTextValue(effectiveSettings?.instagramUrl, contact.instagramUrl),
+    instagramHandle: nonEmptyTextValue(effectiveSettings?.instagramHandle, contact.instagramHandle),
   };
 }
 
@@ -272,4 +285,48 @@ export function getPhoneHref(phone: string) {
   if (digits.startsWith("90")) return `tel:+${digits}`;
   if (digits.startsWith("0")) return `tel:+90${digits.slice(1)}`;
   return `tel:${phone.replace(/\s/g, "")}`;
+}
+
+export function getEmailHref(email: string) {
+  return `mailto:${email.trim()}`;
+}
+
+function containsLegacyBrand(value?: string | null) {
+  return Boolean(value && /Mehmet Eser|Interior|Architecture|architecture|iç mimarlık|icmimarmehmeteser/i.test(value));
+}
+
+function containsLegacyMedia(value?: string | null) {
+  return Boolean(value && /architecture-/i.test(value));
+}
+
+function isLegacyAboutSettings(settings: AboutSettingsRecord) {
+  return Boolean(
+    settings &&
+      (containsLegacyBrand(settings.titleTr) ||
+        containsLegacyBrand(settings.titleEn) ||
+        containsLegacyBrand(settings.descriptionTr) ||
+        containsLegacyBrand(settings.descriptionEn) ||
+        containsLegacyMedia(settings.imageUrl)),
+  );
+}
+
+function isLegacyContactSettings(settings: ContactSettingsRecord) {
+  return Boolean(
+    settings &&
+      (containsLegacyBrand(settings.businessName) ||
+        containsLegacyBrand(settings.instagramUrl) ||
+        containsLegacyBrand(settings.instagramHandle)),
+  );
+}
+
+function isLegacyFooterSettings(settings: FooterSettingsRecord) {
+  return Boolean(
+    settings &&
+      (containsLegacyBrand(settings.brandTitleTr) ||
+        containsLegacyBrand(settings.brandTitleEn) ||
+        containsLegacyBrand(settings.descriptionTr) ||
+        containsLegacyBrand(settings.descriptionEn) ||
+        containsLegacyBrand(settings.instagramUrl) ||
+        containsLegacyBrand(settings.instagramHandle)),
+  );
 }

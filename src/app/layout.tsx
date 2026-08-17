@@ -33,16 +33,15 @@ export const metadata: Metadata = {
   },
   description: DEFAULT_SEO.description,
   applicationName: BRAND_NAME,
-  category: "Interior architecture and design studio",
+  category: "Construction company",
   alternates: {
     canonical: absoluteUrl("/"),
   },
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: LOGO_IMAGE, type: "image/png" },
+      { url: LOGO_IMAGE, type: "image/jpeg" },
     ],
-    apple: [{ url: LOGO_IMAGE, type: "image/png" }],
+    apple: [{ url: LOGO_IMAGE, type: "image/jpeg" }],
   },
   openGraph: {
     title: DEFAULT_SEO.title,
@@ -56,7 +55,7 @@ export const metadata: Metadata = {
         url: absoluteUrl(DEFAULT_OG_IMAGE),
         width: 1200,
         height: 630,
-        alt: `${BRAND_NAME} interior architecture portfolio`,
+        alt: `${BRAND_NAME} construction company in Gaziantep`,
       },
     ],
   },

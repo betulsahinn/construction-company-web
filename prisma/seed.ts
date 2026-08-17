@@ -13,7 +13,8 @@ import {
 
 const databaseLocation = resolveDatabaseLocation();
 const prisma = new PrismaClient({ datasourceUrl: databaseLocation.datasourceUrl });
-const HERO_BRAND_TITLE = "Mehmet Eser\nInterior Design Studio";
+const HERO_BRAND_TITLE = "Turkuvaz İnşaat";
+const DEFAULT_HERO_IMAGE = "/api/uploads/ai-son.png";
 
 const defaultCategories = DEFAULT_CATEGORIES.map((category, index) => ({
   ...category,
@@ -61,100 +62,40 @@ async function main() {
 
   const projects = [
     {
-      title: "Horizon Residence",
-      titleTr: "Horizon Residence",
-      titleEn: "Horizon Residence",
-      slug: "horizon-residence",
-      description:
-        "A contemporary cliffside residence that frames the ocean horizon through expansive glazing and raw concrete volumes. The design balances privacy with panoramic views.",
-      descriptionTr:
-        "Geniş cam yüzeyler ve yalın kütlelerle manzarayı çerçeveleyen çağdaş bir villa tasarımı.",
-      descriptionEn:
-        "A contemporary cliffside residence that frames the ocean horizon through expansive glazing and raw concrete volumes.",
-      location: "Malibu, California",
-      year: 2024,
-      category: "Lüks Villa",
-      categoryNames: ["Lüks Villa", "Cephe Tasarımı"],
-      pdfUrl: null,
-      featured: true,
-      published: true,
-      sortOrder: 1,
-      images: [
-        { url: "/api/uploads/architecture-residence-dusk.png", alt: "Horizon Residence exterior", sortOrder: 0 },
-        { url: "/api/uploads/architecture-interior-gallery.png", alt: "Horizon Residence living space", sortOrder: 1 },
-        { url: "/api/uploads/architecture-townhouse-evening.png", alt: "Horizon Residence entry facade", sortOrder: 2 },
-      ],
-    },
-    {
-      title: "Atrium Gallery",
-      titleTr: "Atrium Gallery",
-      titleEn: "Atrium Gallery",
-      slug: "atrium-gallery",
-      description:
-        "A cultural pavilion defined by a sculptural timber atrium and diffused natural light. The space hosts rotating exhibitions and community gatherings.",
-      descriptionTr:
-        "Doğal ışık ve heykelsi ahşap atrium etrafında kurgulanan rafine bir idari yapı sunumu.",
-      descriptionEn:
-        "A cultural pavilion defined by a sculptural timber atrium and diffused natural light.",
-      location: "Copenhagen, Denmark",
-      year: 2023,
-      category: "İdari Bina",
-      categoryNames: ["İdari Bina", "Cephe Tasarımı"],
-      pdfUrl: null,
-      featured: true,
-      published: true,
-      sortOrder: 2,
-      images: [
-        { url: "/api/uploads/architecture-interior-gallery.png", alt: "Atrium Gallery interior", sortOrder: 0 },
-        { url: "/api/uploads/architecture-residence-dusk.png", alt: "Atrium Gallery exterior", sortOrder: 1 },
-      ],
-    },
-    {
-      title: "Stone & Light Pavilion",
-      titleTr: "Stone & Light Pavilion",
-      titleEn: "Stone & Light Pavilion",
-      slug: "stone-light-pavilion",
-      description:
-        "An intimate retreat nestled within a limestone quarry, where carved stone walls meet delicate steel and glass interventions.",
-      descriptionTr:
-        "Taş dokusu, doğal ışık ve sakin detaylarla şekillenen özel bir lüks villa konsepti.",
-      descriptionEn:
-        "An intimate retreat where carved stone walls meet delicate steel and glass interventions.",
-      location: "Tuscany, Italy",
-      year: 2022,
-      category: "Lüks Villa",
-      categoryNames: ["Lüks Villa"],
-      pdfUrl: null,
-      featured: true,
-      published: true,
-      sortOrder: 3,
-      images: [
-        { url: "/api/uploads/architecture-stone-pavilion.png", alt: "Stone pavilion exterior", sortOrder: 0 },
-        { url: "/api/uploads/architecture-interior-gallery.png", alt: "Stone pavilion interior", sortOrder: 1 },
-      ],
-    },
-    {
-      title: "Urban Loft Conversion",
-      titleTr: "Urban Loft Conversion",
-      titleEn: "Urban Loft Conversion",
-      slug: "urban-loft-conversion",
-      description:
-        "A warehouse transformation that preserves industrial character while introducing refined material palettes and flexible living zones.",
-      descriptionTr:
-        "Endüstriyel karakteri korurken cephe ve iç mekan kurgusunu rafine eden dönüşüm projesi.",
-      descriptionEn:
-        "A warehouse transformation that preserves industrial character with refined material palettes.",
-      location: "Brooklyn, New York",
-      year: 2024,
-      category: "Cephe Tasarımı",
-      categoryNames: ["Cephe Tasarımı"],
+      title: "Turkuvaz Villaları",
+      titleTr: "Turkuvaz Villaları",
+      titleEn: "Turkuvaz Villas",
+      slug: "turkuvaz-villalari",
+      description: null,
+      descriptionTr: null,
+      descriptionEn: null,
+      location: null,
+      year: null,
+      category: "Residential",
+      categoryNames: ["Residential"],
       pdfUrl: null,
       featured: false,
-      published: false,
-      sortOrder: 4,
-      images: [
-        { url: "/api/uploads/architecture-townhouse-evening.png", alt: "Loft exterior entry", sortOrder: 0 },
-      ],
+      published: true,
+      sortOrder: 1,
+      images: [],
+    },
+    {
+      title: "Bağlarbaşı Kooperatif",
+      titleTr: "Bağlarbaşı Kooperatif",
+      titleEn: "Bağlarbaşı Cooperative",
+      slug: "baglarbasi-kooperatif",
+      description: null,
+      descriptionTr: null,
+      descriptionEn: null,
+      location: null,
+      year: null,
+      category: "Cooperative",
+      categoryNames: ["Cooperative"],
+      pdfUrl: null,
+      featured: false,
+      published: true,
+      sortOrder: 2,
+      images: [],
     },
   ];
 
@@ -189,11 +130,11 @@ async function main() {
         id: "homepage",
         title: HERO_BRAND_TITLE,
         subtitle:
-          "A quiet study of light, material, and proportion across a contemporary interior architecture portfolio.",
+          "A professional construction approach focused on planned, careful, and reliable project execution.",
         ctaLabel: null,
         ctaUrl: "/projects",
         mediaType: "image",
-        imageUrl: "/api/uploads/architecture-residence-dusk.png",
+        imageUrl: DEFAULT_HERO_IMAGE,
       },
     });
   }

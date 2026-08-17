@@ -9,6 +9,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 const HERO_ID = "homepage";
+const DEFAULT_HERO_IMAGE = "/api/uploads/ai-son.png";
 
 export async function generateMetadata() {
   const language = await getServerLanguage();
@@ -29,22 +30,27 @@ async function getHeroSettings() {
   ]);
 
   const t = translations[language];
+  const imageUrl = settings
+    ? settings.imageWebUrl ?? settings.imageUrl ?? settings.imageThumbnailUrl ?? settings.imageOriginalUrl ?? null
+    : null;
+  const legacyHero =
+    containsLegacyHeroText(settings?.title) ||
+    containsLegacyHeroText(settings?.subtitle) ||
+    containsLegacyHeroMedia(imageUrl);
 
   return {
     eyebrow: t.home.eyebrow.toLocaleUpperCase("en-US"),
     language,
-    title: settings?.title ?? undefined,
-    subtitle: settings?.subtitle ?? undefined,
+    title: legacyHero ? "Turkuvaz İnşaat" : settings?.title ?? undefined,
+    subtitle: legacyHero ? t.home.subtitle : settings?.subtitle ?? undefined,
     ctaLabel: settings?.ctaLabel ?? undefined,
     ctaUrl: settings?.ctaUrl ?? "/projects",
     mediaType: settings?.mediaType === "video" ? ("video" as const) : ("image" as const),
-    imageUrl: settings
-      ? settings.imageWebUrl ?? settings.imageUrl ?? settings.imageThumbnailUrl ?? settings.imageOriginalUrl ?? null
-      : "/api/uploads/architecture-residence-dusk.png",
+    imageUrl: legacyHero ? DEFAULT_HERO_IMAGE : imageUrl ?? DEFAULT_HERO_IMAGE,
     imageSources: settings
       ? [settings.imageUrl, settings.imageThumbnailUrl, settings.imageOriginalUrl]
       : [],
-    videoUrl: settings?.videoUrl ?? null,
+    videoUrl: legacyHero ? null : settings?.videoUrl ?? null,
   };
 }
 
@@ -71,4 +77,12 @@ export default async function HomePage() {
       </div>
     </section>
   );
+}
+
+function containsLegacyHeroText(value?: string | null) {
+  return Boolean(value && /Mehmet Eser|Interior|Architecture|architecture|Horizon Residence/i.test(value));
+}
+
+function containsLegacyHeroMedia(value?: string | null) {
+  return Boolean(value && /architecture-/i.test(value));
 }

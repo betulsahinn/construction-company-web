@@ -9,6 +9,7 @@ const contactSettingsSchema = z.object({
   businessName: z.string().nullable().optional(),
   city: z.string().nullable().optional(),
   phone: z.string().nullable().optional(),
+  email: z.string().nullable().optional(),
   instagramUrl: z.string().nullable().optional(),
   instagramHandle: z.string().nullable().optional(),
   address: z.string().nullable().optional(),

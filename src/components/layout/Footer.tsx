@@ -4,9 +4,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { BRAND_NAME, toLanguageUppercase, translations, type Language } from "@/lib/i18n";
 import { useLanguagePreference } from "@/lib/use-language";
-import { getLocalizedFooter, getPhoneHref, type FooterSettingsView } from "@/lib/site-settings";
-
-const STUDIO_EMAIL = "info@icmimarmehmeteser.com";
+import { getEmailHref, getLocalizedFooter, getPhoneHref, type FooterSettingsView } from "@/lib/site-settings";
 
 export function Footer({
   initialLanguage,
@@ -19,6 +17,7 @@ export function Footer({
   const t = translations[language];
   const footer = getLocalizedFooter(footerSettings, language);
   const phoneHref = getPhoneHref(footerSettings.phone);
+  const emailHref = getEmailHref(footerSettings.email);
   const currentYear = new Date().getFullYear();
 
   return (
@@ -68,8 +67,8 @@ export function Footer({
               <FooterContactLink href={footerSettings.instagramUrl} icon="instagram" external>
                 {footerSettings.instagramHandle || "Instagram"}
               </FooterContactLink>
-              <FooterContactLink href={`mailto:${STUDIO_EMAIL}`} icon="email">
-                {STUDIO_EMAIL}
+              <FooterContactLink href={emailHref} icon="email">
+                {footerSettings.email}
               </FooterContactLink>
             </div>
           </div>

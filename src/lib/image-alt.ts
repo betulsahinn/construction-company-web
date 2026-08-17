@@ -40,21 +40,15 @@ export function generateProjectImageAlt(input: ImageAltInput): string {
     .filter(Boolean)
     .slice(0, 2);
   const categoryText = categoryLabels.join(" ").trim();
-  const facade = categoryText.toLocaleLowerCase(language === "tr" ? "tr-TR" : "en-US").includes(language === "tr" ? "cephe" : "facade");
-
   if (language === "tr") {
-    const context = facade
-      ? `${categoryText} cephe render görünümü`
-      : categoryText
-        ? `${categoryText} render görünümü`
-        : "iç mekan tasarım render görünümü";
+    const context = categoryText
+      ? `${categoryText} inşaat projesi görünümü`
+      : "inşaat projesi görünümü";
     return `${title} ${context} ${input.order}`.replace(/\s+/g, " ").trim();
   }
 
-  const context = facade
-    ? `${categoryText} facade render view`
-    : categoryText
-      ? `${categoryText} render view`
-      : "interior design render view";
+  const context = categoryText
+    ? `${categoryText} construction project view`
+    : "construction project view";
   return `${title} ${context} ${input.order}`.replace(/\s+/g, " ").trim();
 }

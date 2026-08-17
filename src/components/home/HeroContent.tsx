@@ -36,7 +36,7 @@ export function HeroContent({ title, logoSrc, logoAlt, eyebrow, description, hre
         <div className="mx-auto mt-10 flex justify-center drop-shadow-[0_12px_38px_rgba(0,0,0,0.45)]">
           <SmartImage
             src={logoSrc}
-            alt={logoAlt ?? "Mehmet Eser logo"}
+            alt={logoAlt ?? "Turkuvaz İnşaat logo"}
             width={520}
             height={260}
             priority

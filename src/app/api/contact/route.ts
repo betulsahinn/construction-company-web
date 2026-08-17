@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
 const RESEND_API_URL = "https://api.resend.com/emails";
-const DEFAULT_CONTACT_TO_EMAIL = "info@icmimarmehmeteser.com";
+const DEFAULT_CONTACT_TO_EMAIL = "";
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX_SUBMISSIONS = 5;
 
@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
     const fromEmail = process.env.CONTACT_FROM_EMAIL;
     const toEmail = process.env.CONTACT_TO_EMAIL || DEFAULT_CONTACT_TO_EMAIL;
 
-    if (!resendApiKey || !fromEmail) {
+    if (!resendApiKey || !fromEmail || !toEmail) {
       return NextResponse.json(
         { error: "Message delivery is not configured yet." },
         { status: 503 },

@@ -16,7 +16,7 @@ export default async function AdminAboutPage() {
     <div>
       <div className="mb-8">
         <h1 className="font-display text-3xl tracking-wide">About Page</h1>
-        <p className="mt-1 text-sm text-warm-gray">Manage multilingual studio copy, image, and design approach content.</p>
+        <p className="mt-1 text-sm text-warm-gray">Manage multilingual company copy, image, and approach content.</p>
       </div>
       <AboutSettingsForm initialData={settings} />
     </div>

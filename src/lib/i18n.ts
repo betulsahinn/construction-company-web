@@ -3,14 +3,14 @@ export type Language = "tr" | "en";
 export const DEFAULT_LANGUAGE: Language = "en";
 export const LANGUAGE_COOKIE = "site-language";
 
-export const BRAND_NAME = "Mehmet Eser Interior Design Studio";
+export const BRAND_NAME = "Turkuvaz İnşaat";
 
 export const translations = {
   tr: {
     nav: {
       home: "Ana Sayfa",
       projects: "Projeler",
-      about: "Biz Kimiz",
+      about: "Hakkımızda",
       contact: "İletişim",
       navigation: "Navigasyon",
     },
@@ -24,41 +24,41 @@ export const translations = {
       noPublishedProjects: "Henüz yayında proje yok.",
     },
     home: {
-      eyebrow: "Luxury Interior Architecture",
+      eyebrow: "Turkuvaz İnşaat",
       subtitle:
-        "Işık, malzeme ve oran odağında; çağdaş iç mimarlık projeleri için sakin, rafine ve zamansız görsel anlatımlar üretiyoruz.",
+        "Yapı projelerinde planlı, dikkatli ve güvenilir uygulama süreçlerine odaklanan profesyonel inşaat yaklaşımı.",
     },
     projects: {
-      eyebrow: "Portfolyo",
+      eyebrow: "Projeler",
       title: "Projeler",
       intro:
-        "İdari yapılar, lüks villalar ve cephe tasarımlarından oluşan seçilmiş bir portfolyo.",
+        "Turkuvaz İnşaat tarafından yürütülen ve yayına alınan proje kayıtlarını inceleyin.",
     },
     about: {
-      eyebrow: "Stüdyo",
-      title: "Zamansız Bir Görsel Denge",
+      eyebrow: "Hakkımızda",
+      title: "Güvenilir İnşaat Yaklaşımı",
       body:
-        "2020 yılında kurulan Mehmet Eser Interior Design Studio, Gaziantep merkezli bir iç mimarlık stüdyosudur. Malzeme dengesi, oran, detay kalitesi ve zamansız görsel anlatım odağında iç mekan tasarımları, mimari render sunumları ve konsept projeler üretir.",
+        "Turkuvaz İnşaat, Gaziantep merkezli yapı projelerinde kaliteli uygulama, düzenli süreç yönetimi ve müşteri odaklı iletişime önem veren bir inşaat firmasıdır.",
       method: "Yaklaşım",
-      methodTitle: "Tasarım yaklaşımı",
+      methodTitle: "Çalışma yaklaşımı",
       cards: [
         {
-          title: "Malzeme",
-          text: "Her projede dokuların, renklerin ve yüzeylerin dengeli bir bütün oluşturmasına odaklanırız.",
+          title: "Kalite",
+          text: "Projelerde malzeme, uygulama ve detay kararlarının özenli biçimde ele alınmasına odaklanırız.",
         },
         {
-          title: "Oran",
-          text: "Mekan kurgusunu insan ölçeği, akış ve görsel sakinlik üzerinden rafine ederiz.",
+          title: "Güven",
+          text: "Süreç boyunca açık iletişim, düzenli takip ve sorumlu proje yürütme anlayışını önemseriz.",
         },
         {
-          title: "Anlatım",
-          text: "Render sunumları ve konsept görsellerle tasarım fikrini net, güçlü ve zamansız biçimde aktarırız.",
+          title: "Uygulama",
+          text: "Modern yapı pratikleriyle uyumlu, planlı ve dikkatli uygulama süreçleri geliştirmeyi hedefleriz.",
         },
       ],
     },
     contact: {
       eyebrow: "İletişim",
-      title: "Birlikte Özel Bir Mekan Tasarlayalım",
+      title: "Projeniz İçin İletişime Geçin",
       business: "İşletme",
       city: "Şehir",
       phone: "Telefon",
@@ -73,7 +73,7 @@ export const translations = {
     },
     footer: {
       description:
-        "Gaziantep merkezli iç mimarlık stüdyosu; malzeme, oran ve sakin detaylarla rafine mekanlar tasarlar.",
+        "Gaziantep merkezli inşaat firması; yapı projelerinde planlı uygulama ve güvenilir süreç yönetimine odaklanır.",
       rightsReserved: "Tüm hakları saklıdır.",
     },
   },
@@ -95,41 +95,41 @@ export const translations = {
       noPublishedProjects: "No published projects yet.",
     },
     home: {
-      eyebrow: "Luxury Interior Architecture",
+      eyebrow: "Turkuvaz İnşaat",
       subtitle:
-        "A quiet study of light, material, and proportion across a contemporary interior architecture portfolio.",
+        "A professional construction approach focused on planned, careful, and reliable project execution.",
     },
     projects: {
-      eyebrow: "Portfolio",
+      eyebrow: "Projects",
       title: "Projects",
       intro:
-        "A curated portfolio of administrative buildings, luxury villas, and facade design projects.",
+        "Explore published project records managed by Turkuvaz İnşaat.",
     },
     about: {
-      eyebrow: "Our Studio",
-      title: "Design With Enduring Presence",
+      eyebrow: "About",
+      title: "A Reliable Construction Approach",
       body:
-        "Founded in 2020, Mehmet Eser Interior Design Studio is an interior architecture studio based in Gaziantep, creating refined interiors, architectural render presentations, and design concepts with a focus on material clarity, proportion, and timeless visual quality.",
-      method: "Method",
+        "Turkuvaz İnşaat is a Gaziantep-based construction company focused on quality execution, organized project processes, and customer-oriented communication.",
+      method: "Approach",
       methodTitle: "Our approach",
       cards: [
         {
-          title: "Material",
-          text: "We focus on balanced textures, color, and surfaces that form a calm architectural whole.",
+          title: "Quality",
+          text: "We focus on careful handling of material, execution, and detail decisions throughout each project.",
         },
         {
-          title: "Proportion",
-          text: "Spatial decisions are refined through human scale, flow, and visual restraint.",
+          title: "Reliability",
+          text: "We value clear communication, consistent follow-up, and responsible project coordination.",
         },
         {
-          title: "Presentation",
-          text: "Render presentations and concept visuals communicate each design idea with clarity and permanence.",
+          title: "Execution",
+          text: "We aim to support planned and attentive construction processes aligned with modern building practices.",
         },
       ],
     },
     contact: {
       eyebrow: "Contact",
-      title: "Let's Create Something Extraordinary",
+      title: "Contact Us About Your Project",
       business: "Business",
       city: "City",
       phone: "Phone",
@@ -144,63 +144,27 @@ export const translations = {
     },
     footer: {
       description:
-        "Interior architecture studio in Gaziantep, shaping refined spaces through material, proportion, and quiet detail.",
+        "Gaziantep-based construction company focused on planned execution and reliable project processes.",
       rightsReserved: "All rights reserved.",
     },
   },
 } as const;
 
 export const categoryTranslations: Record<string, Record<Language, string>> = {
-  "Lüks Villa": {
-    tr: "Lüks Villa",
-    en: "Luxury Villa",
-  },
-  "İdari Bina": {
-    tr: "İdari Bina",
-    en: "Administrative Building",
-  },
-  "Cephe Tasarımı": {
-    tr: "Cephe Tasarımı",
-    en: "Facade Design",
-  },
-  "Örnek Daire": {
-    tr: "Örnek Daire",
-    en: "Sample Apartment",
-  },
-  Otel: {
-    tr: "Otel",
-    en: "Hotel",
-  },
-  Ofis: {
-    tr: "Ofis",
-    en: "Office",
-  },
-  "Restoran / Cafe": {
-    tr: "Restoran / Cafe",
-    en: "Restaurant / Cafe",
-  },
-  Konut: {
-    tr: "Konut",
+  Residential: {
+    tr: "Residential",
     en: "Residential",
   },
-  "Ticari Alan": {
-    tr: "Ticari Alan",
-    en: "Commercial Space",
+  Commercial: {
+    tr: "Commercial",
+    en: "Commercial",
   },
-  "İç Mekan": {
-    tr: "İç Mekan",
-    en: "Interior",
+  Cooperative: {
+    tr: "Cooperative",
+    en: "Cooperative",
   },
-  "Dış Mekan": {
-    tr: "Dış Mekan",
-    en: "Exterior",
-  },
-  Peyzaj: {
-    tr: "Peyzaj",
-    en: "Landscape",
-  },
-  Diğer: {
-    tr: "Diğer",
+  Other: {
+    tr: "Other",
     en: "Other",
   },
 };

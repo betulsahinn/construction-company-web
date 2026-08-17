@@ -8,11 +8,12 @@ import { BRAND_NAME } from "@/lib/i18n";
 import { uploadFormData } from "@/lib/client-upload";
 import { UploadProgress } from "@/components/admin/UploadProgress";
 
-const HERO_BRAND_TITLE = "Mehmet Eser\nInterior Design Studio";
+const HERO_BRAND_TITLE = "Turkuvaz İnşaat";
 const LEGACY_HERO_TITLES = [
   "Horizon Residence",
   "Mehmet Eser",
   "Mehmet Eser\nInterior Design\nStudio",
+  "Mehmet Eser Interior Design Studio",
   BRAND_NAME,
 ];
 

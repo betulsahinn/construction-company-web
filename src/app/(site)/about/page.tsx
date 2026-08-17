@@ -50,7 +50,7 @@ export default async function AboutPage() {
               <SmartImage
                 src={settings.imageWebUrl ?? settings.imageUrl ?? settings.imageOriginalUrl!}
                 sources={[settings.imageUrl, settings.imageOriginalUrl]}
-                alt={`${BRAND_NAME} studio interior`}
+                alt={`${BRAND_NAME} construction company`}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
