@@ -39,9 +39,9 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: LOGO_IMAGE, type: "image/jpeg" },
+      { url: LOGO_IMAGE, type: "image/png" },
     ],
-    apple: [{ url: LOGO_IMAGE, type: "image/jpeg" }],
+    apple: [{ url: LOGO_IMAGE, type: "image/png" }],
   },
   openGraph: {
     title: DEFAULT_SEO.title,

@@ -2,7 +2,7 @@ import { HeroMedia } from "@/components/home/HeroMedia";
 import { HeroContent } from "@/components/home/HeroContent";
 import { prisma } from "@/lib/prisma";
 import { getServerLanguage } from "@/lib/i18n-server";
-import { translations } from "@/lib/i18n";
+import { BRAND_NAME, translations } from "@/lib/i18n";
 import { createPageMetadata, pageSeo } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
@@ -33,24 +33,23 @@ async function getHeroSettings() {
   const imageUrl = settings
     ? settings.imageWebUrl ?? settings.imageUrl ?? settings.imageThumbnailUrl ?? settings.imageOriginalUrl ?? null
     : null;
-  const legacyHero =
-    containsLegacyHeroText(settings?.title) ||
-    containsLegacyHeroText(settings?.subtitle) ||
-    containsLegacyHeroMedia(imageUrl);
+  const legacyTitle = containsLegacyHeroText(settings?.title);
+  const legacySubtitle = containsLegacyHeroText(settings?.subtitle);
+  const legacyMedia = containsLegacyHeroMedia(imageUrl);
 
   return {
     eyebrow: t.home.eyebrow.toLocaleUpperCase("en-US"),
     language,
-    title: legacyHero ? "Turkuvaz İnşaat" : settings?.title ?? undefined,
-    subtitle: legacyHero ? t.home.subtitle : settings?.subtitle ?? undefined,
-    ctaLabel: settings?.ctaLabel ?? undefined,
+    title: !settings || legacyTitle || settings.title == null ? BRAND_NAME : settings.title,
+    subtitle: !settings || legacySubtitle || settings.subtitle == null ? t.home.subtitle : settings.subtitle,
+    ctaLabel: !settings || settings.ctaLabel == null ? t.common.viewProjects : settings.ctaLabel,
     ctaUrl: settings?.ctaUrl ?? "/projects",
     mediaType: settings?.mediaType === "video" ? ("video" as const) : ("image" as const),
-    imageUrl: legacyHero ? DEFAULT_HERO_IMAGE : imageUrl ?? DEFAULT_HERO_IMAGE,
+    imageUrl: legacyMedia ? DEFAULT_HERO_IMAGE : imageUrl ?? DEFAULT_HERO_IMAGE,
     imageSources: settings
       ? [settings.imageUrl, settings.imageThumbnailUrl, settings.imageOriginalUrl]
       : [],
-    videoUrl: legacyHero ? null : settings?.videoUrl ?? null,
+    videoUrl: legacyMedia ? null : settings?.videoUrl ?? null,
   };
 }
 

@@ -3,7 +3,7 @@ import { BRAND_NAME, type Language } from "@/lib/i18n";
 
 export const SITE_URL = "https://turkuvazinsaat.com";
 export const DEFAULT_OG_IMAGE = "/api/uploads/ai-son.png";
-export const LOGO_IMAGE = "/api/uploads/logo1.jpg";
+export const LOGO_IMAGE = "/uploads/logo1.png";
 
 export const BUSINESS = {
   name: BRAND_NAME,

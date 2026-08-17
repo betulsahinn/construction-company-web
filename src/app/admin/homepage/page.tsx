@@ -1,6 +1,5 @@
 import { prisma } from "@/lib/prisma";
 import { HomepageHeroForm } from "@/components/admin/HomepageHeroForm";
-import { BRAND_NAME } from "@/lib/i18n";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -12,31 +11,27 @@ const LEGACY_HERO_TITLES = [
   "Mehmet Eser",
   "Mehmet Eser\nInterior Design\nStudio",
   "Mehmet Eser Interior Design Studio",
-  BRAND_NAME,
 ];
 const DEFAULT_HERO_IMAGE = "/api/uploads/ai-son.png";
 
 async function getHero() {
   const hero = await prisma.homepageHero.findUnique({ where: { id: HERO_ID } });
-  const savedTitle = hero?.title?.trim();
   const imageUrl = hero ? hero.imageWebUrl ?? hero.imageUrl ?? null : null;
-  const legacyHero =
-    !savedTitle ||
-    LEGACY_HERO_TITLES.includes(savedTitle) ||
-    containsLegacyHeroText(hero?.subtitle) ||
-    containsLegacyHeroMedia(imageUrl);
+  const legacyTitle = containsLegacyHeroTitle(hero?.title);
+  const legacySubtitle = containsLegacyHeroText(hero?.subtitle);
+  const legacyMedia = containsLegacyHeroMedia(imageUrl);
 
   return {
-    title: legacyHero ? HERO_BRAND_TITLE : savedTitle,
+    title: !hero || legacyTitle || hero.title == null ? HERO_BRAND_TITLE : hero.title,
     subtitle:
-      legacyHero || !hero?.subtitle
+      !hero || legacySubtitle || hero.subtitle == null
         ? "A professional construction approach focused on planned, careful, and reliable project execution."
         : hero.subtitle,
-    ctaLabel: hero?.ctaLabel ?? "View Projects",
-    ctaUrl: hero?.ctaUrl ?? "/projects",
+    ctaLabel: !hero || hero.ctaLabel == null ? "View Projects" : hero.ctaLabel,
+    ctaUrl: !hero || hero.ctaUrl == null ? "/projects" : hero.ctaUrl,
     mediaType: hero?.mediaType === "video" ? ("video" as const) : ("image" as const),
-    imageUrl: legacyHero ? DEFAULT_HERO_IMAGE : imageUrl ?? DEFAULT_HERO_IMAGE,
-    videoUrl: legacyHero ? null : hero?.videoUrl ?? null,
+    imageUrl: legacyMedia ? DEFAULT_HERO_IMAGE : imageUrl ?? DEFAULT_HERO_IMAGE,
+    videoUrl: legacyMedia ? null : hero?.videoUrl ?? null,
   };
 }
 
@@ -52,6 +47,11 @@ export default async function AdminHomepagePage() {
       <HomepageHeroForm initialData={hero} />
     </div>
   );
+}
+
+function containsLegacyHeroTitle(value?: string | null) {
+  const trimmed = value?.trim();
+  return Boolean(trimmed && LEGACY_HERO_TITLES.includes(trimmed));
 }
 
 function containsLegacyHeroText(value?: string | null) {

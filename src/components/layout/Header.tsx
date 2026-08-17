@@ -92,33 +92,30 @@ export function Header({ initialLanguage }: { initialLanguage: Language }) {
           className="block shrink-0 leading-none"
         >
           <SmartImage
-            src="/api/uploads/logo1.jpg"
+            src="/api/uploads/logo1.png"
             alt="Turkuvaz İnşaat"
             width={800}
             height={200}
             loading="eager"
             fetchPriority="auto"
-            className="h-12 w-auto object-contain md:h-14"
+            className="h-16 w-auto object-contain md:h-20"
             sizes="(max-width: 768px) 192px, 224px"
           />
         </Link>
 
         <nav className="hidden items-center gap-9 md:flex">
-          {navLinks.map((link) => {
-            const active = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  "text-[0.68rem] font-semibold uppercase tracking-[0.38em] transition-colors",
-                  active ? "text-accent" : isHome ? "text-cream/80 hover:text-accent" : "text-charcoal hover:text-accent",
-                )}
-              >
-                {toLanguageUppercase(t.nav[link.labelKey], language)}
-              </Link>
-            );
-          })}
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={cn(
+                "text-[0.68rem] font-semibold uppercase tracking-[0.38em] transition-colors",
+                isHome ? "text-cream/80 hover:text-accent" : "text-charcoal hover:text-accent",
+              )}
+            >
+              {toLanguageUppercase(t.nav[link.labelKey], language)}
+            </Link>
+          ))}
           <LanguageSwitcher language={language} onChange={setLanguage} isHome={isHome} />
         </nav>
 
@@ -153,7 +150,7 @@ export function Header({ initialLanguage }: { initialLanguage: Language }) {
                   onClick={() => setMobileOpen(false)}
                   className={cn(
                     "text-xs font-semibold uppercase tracking-[0.32em] transition-colors",
-                    pathname === link.href ? "text-accent" : "text-charcoal",
+                    "text-charcoal hover:text-accent",
                   )}
                 >
                   {toLanguageUppercase(t.nav[link.labelKey], language)}

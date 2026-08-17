@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import type { RefObject } from "react";
 import { SmartImage } from "@/components/SmartImage";
 import { useRouter } from "next/navigation";
-import { BRAND_NAME } from "@/lib/i18n";
 import { uploadFormData } from "@/lib/client-upload";
 import { UploadProgress } from "@/components/admin/UploadProgress";
 
@@ -14,7 +13,6 @@ const LEGACY_HERO_TITLES = [
   "Mehmet Eser",
   "Mehmet Eser\nInterior Design\nStudio",
   "Mehmet Eser Interior Design Studio",
-  BRAND_NAME,
 ];
 
 type HomepageHeroData = {
@@ -58,10 +56,10 @@ export function HomepageHeroForm({ initialData }: HomepageHeroFormProps) {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          title: form.title || null,
-          subtitle: form.subtitle || null,
-          ctaLabel: form.ctaLabel || null,
-          ctaUrl: form.ctaUrl || null,
+          title: form.title,
+          subtitle: form.subtitle,
+          ctaLabel: form.ctaLabel,
+          ctaUrl: form.ctaUrl,
           mediaType: form.mediaType,
         }),
       });
@@ -328,10 +326,8 @@ function MediaPanel({
 }
 
 function normalizeHero(hero: Partial<HomepageHeroData>): HomepageHeroData {
-  const title = hero.title?.trim();
-
   return {
-    title: title && !LEGACY_HERO_TITLES.includes(title) ? title : HERO_BRAND_TITLE,
+    title: normalizeTitle(hero.title),
     subtitle: hero.subtitle ?? "",
     ctaLabel: hero.ctaLabel ?? "",
     ctaUrl: hero.ctaUrl ?? "",
@@ -339,6 +335,13 @@ function normalizeHero(hero: Partial<HomepageHeroData>): HomepageHeroData {
     imageUrl: hero.imageUrl ?? null,
     videoUrl: hero.videoUrl ?? null,
   };
+}
+
+function normalizeTitle(value: string | null | undefined) {
+  if (value == null) return HERO_BRAND_TITLE;
+
+  const trimmed = value.trim();
+  return trimmed && LEGACY_HERO_TITLES.includes(trimmed) ? HERO_BRAND_TITLE : value;
 }
 
 function validateMediaFile(file: File, mediaType: "image" | "video") {
