@@ -88,11 +88,12 @@ export function ProjectForm({ categories, initialData, mode }: ProjectFormProps)
   function updateTitleField(key: "titleTr" | "titleEn", value: string) {
     setForm((prev) => {
       const next = { ...prev, [key]: value };
-      const nextPrimaryTitle = next.titleTr || next.titleEn || next.title;
+      if (mode === "edit") return next;
 
+      const nextPrimaryTitle = next.titleTr || next.titleEn || next.title;
       return {
         ...next,
-        title: next.titleTr || next.titleEn,
+        title: nextPrimaryTitle,
         slug: slugEdited ? next.slug : createSlugPreview(nextPrimaryTitle),
       };
     });
@@ -104,7 +105,7 @@ export function ProjectForm({ categories, initialData, mode }: ProjectFormProps)
   }
 
   function regenerateSlug() {
-    setSlugEdited(false);
+    setSlugEdited(mode === "edit");
     updateField("slug", createSlugPreview(primaryTitle));
   }
 
