@@ -204,10 +204,14 @@ function uploadDirectlyToR2(
         return;
       }
 
-      reject(new Error(`Video upload failed (${request.status || "network error"})`));
+      const status = [request.status, request.statusText].filter(Boolean).join(" ") || "network error";
+      const responseBody = request.responseText?.trim();
+      reject(new Error(`Video upload failed (${status})${responseBody ? `: ${responseBody}` : ""}`));
     });
 
-    request.addEventListener("error", () => reject(new Error("Video upload failed due to a network error")));
+    request.addEventListener("error", () =>
+      reject(new Error("Video upload failed due to a network or CORS error before the R2 response could be read")),
+    );
     request.addEventListener("abort", () => reject(new Error("Video upload was cancelled")));
     request.send(file);
   });

@@ -42,11 +42,25 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
 
     if (data.action === "presign") {
       validateVideoUpload(data.contentType, data.fileSize);
-      const upload = await createPresignedR2PutUrl({
-        contentType: data.contentType,
-        originalFilename: data.filename,
-        prefix: PROJECT_VIDEO_PREFIX,
-      });
+      let upload: Awaited<ReturnType<typeof createPresignedR2PutUrl>>;
+      try {
+        upload = await createPresignedR2PutUrl({
+          contentType: data.contentType,
+          originalFilename: data.filename,
+          prefix: PROJECT_VIDEO_PREFIX,
+        });
+      } catch (error) {
+        console.error("[project-video:presign] failed", {
+          projectId: id,
+          contentType: data.contentType,
+          fileSize: data.fileSize,
+          error: error instanceof Error ? error.message : "Unknown presign error",
+        });
+        return NextResponse.json(
+          { error: "Unable to create project video upload URL. Check R2 endpoint, bucket, credentials, and token permissions." },
+          { status: 500 },
+        );
+      }
 
       return NextResponse.json({
         uploadUrl: upload.uploadUrl,

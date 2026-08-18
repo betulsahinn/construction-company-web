@@ -28,10 +28,9 @@
     "postinstall": "node scripts/prisma-cli.mjs generate"
   },
   "dependencies": {
-    "@aws-crypto/sha256-js": "^5.2.0",
     "@aws-sdk/client-s3": "^3.750.0",
+    "@aws-sdk/s3-request-presigner": "^3.1075.0",
     "@prisma/client": "^6.5.0",
-    "@smithy/signature-v4": "^5.4.6",
     "bcryptjs": "^3.0.2",
     "framer-motion": "^12.4.7",
     "jose": "^6.0.8",
