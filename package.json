@@ -19,6 +19,7 @@
     "db:push": "node scripts/prisma-cli.mjs db push --local",
     "db:seed": "tsx prisma/seed.ts",
     "db:studio": "node scripts/prisma-cli.mjs studio",
+    "admin:update": "tsx scripts/update-admin-user.ts",
     "migrate:data:pg:dry-run": "node scripts/generate-postgres-migration-client.mjs && tsx scripts/migrate-sqlite-to-postgres.ts --dry-run",
     "migrate:data:pg": "node scripts/generate-postgres-migration-client.mjs && tsx scripts/migrate-sqlite-to-postgres.ts --execute",
     "migrate:uploads-to-r2": "tsx scripts/migrate-uploads-to-r2.ts",
@@ -27,8 +28,10 @@
     "postinstall": "node scripts/prisma-cli.mjs generate"
   },
   "dependencies": {
+    "@aws-crypto/sha256-js": "^5.2.0",
     "@aws-sdk/client-s3": "^3.750.0",
     "@prisma/client": "^6.5.0",
+    "@smithy/signature-v4": "^5.4.6",
     "bcryptjs": "^3.0.2",
     "framer-motion": "^12.4.7",
     "jose": "^6.0.8",

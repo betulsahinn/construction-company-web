@@ -54,7 +54,7 @@ export default async function EditProjectPage({ params }: PageProps) {
           location: project.location ?? "",
           year: project.year ? String(project.year) : "",
           categoryIds: project.categories.map(({ category }) => category.id),
-          pdfUrl: project.pdfUrl,
+          videoUrl: project.pdfUrl,
           featured: project.featured,
           published: project.published,
           sortOrder: project.sortOrder,

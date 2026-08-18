@@ -123,13 +123,20 @@ export default async function ProjectDetailPage({ params }: PageProps) {
               </p>
             )}
             {project.pdfUrl && (
-              <a
-                href={project.pdfUrl}
-                download
-                className="mt-10 inline-flex border border-charcoal px-7 py-4 text-[0.68rem] font-semibold uppercase tracking-[0.34em] text-charcoal transition-colors hover:border-accent hover:bg-accent hover:text-charcoal"
-              >
-                {t.common.downloadPdf}
-              </a>
+              <div className="mt-10">
+                <p className="mb-4 text-[0.68rem] font-semibold uppercase tracking-[0.34em] text-charcoal">
+                  {t.common.projectVideo}
+                </p>
+                <div className="aspect-video overflow-hidden bg-stone/30">
+                  <video
+                    src={project.pdfUrl}
+                    className="h-full w-full object-cover"
+                    controls
+                    playsInline
+                    preload="metadata"
+                  />
+                </div>
+              </div>
             )}
           </header>
 

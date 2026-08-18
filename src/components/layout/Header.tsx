@@ -92,7 +92,7 @@ export function Header({ initialLanguage }: { initialLanguage: Language }) {
           className="block shrink-0 leading-none"
         >
           <SmartImage
-            src="/api/uploads/logo1.png"
+            src="/uploads/logo1.png"
             alt="Turkuvaz İnşaat"
             width={800}
             height={200}

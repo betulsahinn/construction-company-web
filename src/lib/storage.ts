@@ -4,11 +4,12 @@ import sharp from "sharp";
 import { deleteFromR2, isR2Configured, uploadToR2 } from "@/lib/r2";
 
 export const MAX_IMAGE_UPLOAD_SIZE = 200 * 1024 * 1024;
-export const MAX_PDF_UPLOAD_SIZE = 200 * 1024 * 1024;
 export const MAX_VIDEO_UPLOAD_SIZE = 200 * 1024 * 1024;
+export const VIDEO_UPLOAD_ERROR_MESSAGE = "Maximum 200MB. Supported: MP4/WebM/MOV.";
 const MULTIPART_OVERHEAD_ALLOWANCE = 1024 * 1024;
 
 const allowedImageMimeTypes = ["image/jpeg", "image/png", "image/webp"];
+export const allowedVideoMimeTypes = ["video/mp4", "video/webm", "video/quicktime"];
 
 export type UploadedImageAsset = {
   url: string;
@@ -118,28 +119,26 @@ export async function uploadImage(file: File): Promise<UploadedImageAsset> {
   }
 }
 
-export async function uploadPdf(file: File): Promise<string> {
+export async function uploadVideo(file: File): Promise<string> {
+  validateVideoUpload(file.type, file.size);
+
   return uploadFile(
     file,
-    ["application/pdf"],
-    MAX_PDF_UPLOAD_SIZE,
-    "PDF file size must be 200MB or less.",
-    "pdfs",
+    allowedVideoMimeTypes,
+    MAX_VIDEO_UPLOAD_SIZE,
+    VIDEO_UPLOAD_ERROR_MESSAGE,
+    "videos",
   );
 }
 
-export async function uploadVideo(file: File): Promise<string> {
-  if (!["video/mp4", "video/webm"].includes(file.type)) {
-    throw new Error("Maximum 200MB. Supported: MP4/WebM.");
+export function validateVideoUpload(mimeType: string, fileSize: number): void {
+  if (!allowedVideoMimeTypes.includes(mimeType)) {
+    throw new Error(VIDEO_UPLOAD_ERROR_MESSAGE);
   }
 
-  return uploadFile(
-    file,
-    ["video/mp4", "video/webm"],
-    MAX_VIDEO_UPLOAD_SIZE,
-    "Maximum 200MB. Supported: MP4/WebM.",
-    "videos",
-  );
+  if (fileSize > MAX_VIDEO_UPLOAD_SIZE) {
+    throw new Error(VIDEO_UPLOAD_ERROR_MESSAGE);
+  }
 }
 
 export async function deleteStoredFile(url: string): Promise<void> {

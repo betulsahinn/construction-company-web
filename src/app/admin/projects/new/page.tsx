@@ -42,7 +42,7 @@ export default async function NewProjectPage() {
           location: "",
           year: "",
           categoryIds: [],
-          pdfUrl: null,
+          videoUrl: null,
           featured: false,
           published: false,
           sortOrder: nextSortOrder,

@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ImageManager } from "./ImageManager";
-import { PdfManager } from "./PdfManager";
+import { VideoManager } from "./VideoManager";
 import { generateProjectDescriptions } from "@/lib/description-generator";
 
 type ProjectImage = {
@@ -37,7 +37,7 @@ type ProjectFormData = {
   location: string;
   year: string;
   categoryIds: string[];
-  pdfUrl: string | null;
+  videoUrl: string | null;
   featured: boolean;
   published: boolean;
   sortOrder: number;
@@ -61,7 +61,7 @@ const defaultData: ProjectFormData = {
   location: "",
   year: "",
   categoryIds: [],
-  pdfUrl: null,
+  videoUrl: null,
   featured: false,
   published: false,
   sortOrder: 1,
@@ -138,7 +138,7 @@ export function ProjectForm({ categories, initialData, mode }: ProjectFormProps)
           location: form.location || null,
           year: form.year ? parseInt(form.year, 10) : null,
           categoryIds: form.categoryIds,
-          pdfUrl: form.pdfUrl,
+          pdfUrl: form.videoUrl,
           featured,
           published,
           sortOrder: form.sortOrder,
@@ -171,7 +171,7 @@ export function ProjectForm({ categories, initialData, mode }: ProjectFormProps)
           location: project.location ?? "",
           year: project.year ? String(project.year) : "",
           categoryIds: project.categories?.map(({ category }: { category: CategoryOption }) => category.id) ?? prev.categoryIds,
-          pdfUrl: project.pdfUrl ?? null,
+          videoUrl: project.videoUrl ?? project.pdfUrl ?? null,
           featured: project.featured,
           published: project.published,
           sortOrder: project.sortOrder,
@@ -447,8 +447,8 @@ export function ProjectForm({ categories, initialData, mode }: ProjectFormProps)
           </div>
 
           <div>
-            <h3 className="mb-4 text-xs uppercase tracking-widest text-warm-gray">PDF Presentation</h3>
-            <PdfManager projectId={form.id} pdfUrl={form.pdfUrl} onPdfChange={(pdfUrl) => updateField("pdfUrl", pdfUrl)} />
+            <h3 className="mb-4 text-xs uppercase tracking-widest text-warm-gray">Project Video</h3>
+            <VideoManager projectId={form.id} videoUrl={form.videoUrl} onVideoChange={(videoUrl) => updateField("videoUrl", videoUrl)} />
           </div>
         </>
       )}

@@ -19,7 +19,7 @@ export type ProjectWithImages = {
       slug: string;
     };
   }[];
-  pdfUrl: string | null;
+  videoUrl: string | null;
   featured: boolean;
   published: boolean;
   sortOrder: number;

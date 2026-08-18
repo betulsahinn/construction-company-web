@@ -40,7 +40,7 @@ export default async function AdminProjectsPage() {
               <th className="px-4 py-3 font-medium uppercase tracking-wider text-warm-gray">Category</th>
               <th className="px-4 py-3 font-medium uppercase tracking-wider text-warm-gray">Status</th>
               <th className="px-4 py-3 font-medium uppercase tracking-wider text-warm-gray">Images</th>
-              <th className="px-4 py-3 font-medium uppercase tracking-wider text-warm-gray">PDF</th>
+              <th className="px-4 py-3 font-medium uppercase tracking-wider text-warm-gray">Video</th>
               <th className="px-4 py-3 font-medium uppercase tracking-wider text-warm-gray">Actions</th>
             </tr>
           </thead>

@@ -26,19 +26,23 @@ async function main() {
     console.log(`Manual seed target: ${databaseLocation.filePath}`);
   }
 
-  const email = process.env.ADMIN_EMAIL ?? "admin@studio.com";
-  const password = process.env.ADMIN_PASSWORD ?? "admin123";
+  const email = process.env.ADMIN_EMAIL?.trim();
+  const password = process.env.ADMIN_PASSWORD?.trim();
 
-  const existingUser = await prisma.user.findUnique({ where: { email } });
-  if (!existingUser) {
-    const passwordHash = await bcrypt.hash(password, 12);
-    await prisma.user.create({
-      data: {
-        email,
-        passwordHash,
-        name: "Studio Admin",
-      },
-    });
+  if (email && password) {
+    const existingUser = await prisma.user.findUnique({ where: { email } });
+    if (!existingUser) {
+      const passwordHash = await bcrypt.hash(password, 12);
+      await prisma.user.create({
+        data: {
+          email,
+          passwordHash,
+          name: process.env.ADMIN_NAME?.trim() || "Admin",
+        },
+      });
+    }
+  } else {
+    console.log("Admin seed skipped. Set ADMIN_EMAIL and ADMIN_PASSWORD to create an initial admin account.");
   }
 
   const categoryByName = new Map<string, Category>();
@@ -161,7 +165,7 @@ async function main() {
   }
 
   console.log("Database seeded successfully.");
-  console.log(`Admin account ensured for ${email}. Existing records were left unchanged.`);
+  console.log("Existing records were left unchanged.");
 }
 
 main()

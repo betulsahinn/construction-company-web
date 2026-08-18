@@ -1,6 +1,8 @@
 import { randomUUID } from "crypto";
 import path from "path";
 import { DeleteObjectCommand, HeadObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { Sha256 } from "@aws-crypto/sha256-js";
+import { SignatureV4 } from "@smithy/signature-v4";
 
 export type R2UploadOptions = {
   contentType: string;
@@ -18,6 +20,10 @@ type R2Config = {
   bucketName: string;
   endpoint: string;
   publicBaseUrl: string;
+};
+
+type PresignedPutUrlOptions = R2UploadOptions & {
+  expiresIn?: number;
 };
 
 let client: S3Client | undefined;
@@ -81,6 +87,55 @@ function publicUrlForKey(key: string, config: R2Config): string {
 
 export function getR2PublicUrl(key: string): string {
   return publicUrlForKey(key.replace(/^\/+/, ""), getR2Config());
+}
+
+export async function createPresignedR2PutUrl(options: PresignedPutUrlOptions): Promise<R2UploadResult & { uploadUrl: string }> {
+  const config = getR2Config();
+  const endpoint = new URL(config.endpoint);
+  const key = createObjectKey(options);
+  const endpointPath = endpoint.pathname.replace(/\/+$/, "");
+  const requestPath = `${endpointPath}/${config.bucketName}/${key}`.replace(/\/{2,}/g, "/");
+  const signer = new SignatureV4({
+    credentials: {
+      accessKeyId: requireEnvironmentVariable("CLOUDFLARE_R2_ACCESS_KEY_ID"),
+      secretAccessKey: requireEnvironmentVariable("CLOUDFLARE_R2_SECRET_ACCESS_KEY"),
+    },
+    region: "auto",
+    service: "s3",
+    sha256: Sha256,
+    uriEscapePath: false,
+  });
+
+  const signedRequest = await signer.presign(
+    {
+      protocol: endpoint.protocol,
+      hostname: endpoint.hostname,
+      port: endpoint.port ? Number(endpoint.port) : undefined,
+      method: "PUT",
+      path: requestPath,
+      query: {},
+      headers: {
+        host: endpoint.host,
+        "content-type": options.contentType,
+      },
+    },
+    { expiresIn: options.expiresIn ?? 600 },
+  );
+  const query = new URLSearchParams();
+  for (const [name, value] of Object.entries(signedRequest.query ?? {})) {
+    if (Array.isArray(value)) {
+      value.forEach((item) => query.append(name, item));
+    } else if (value !== undefined) {
+      query.set(name, String(value));
+    }
+  }
+
+  const uploadUrl = `${signedRequest.protocol}//${signedRequest.hostname}${signedRequest.port ? `:${signedRequest.port}` : ""}${signedRequest.path}?${query}`;
+  return { key, url: publicUrlForKey(key, config), uploadUrl };
+}
+
+export function getR2KeyFromPublicUrl(url: string): string | null {
+  return keyFromUrlOrKey(url, getR2Config());
 }
 
 export async function r2ObjectExists(key: string): Promise<boolean> {
