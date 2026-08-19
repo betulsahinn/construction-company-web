@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { requireAuth } from "@/lib/auth";
-import { ABOUT_SETTINGS_ID } from "@/lib/site-settings";
+import { ABOUT_SETTINGS_ID, defaultAboutSettings } from "@/lib/site-settings";
 import { revalidateStudioContent } from "@/lib/revalidate";
 
 const aboutSettingsSchema = z.object({
@@ -41,6 +41,7 @@ export async function PUT(request: NextRequest) {
       update: data,
       create: {
         id: ABOUT_SETTINGS_ID,
+        ...defaultAboutSettings,
         ...data,
       },
     });

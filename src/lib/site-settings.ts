@@ -151,42 +151,52 @@ function textValue(value: string | null | undefined, fallback: string) {
   return value ?? fallback;
 }
 
+function aboutTextValue(value: string | null | undefined, fallback: string) {
+  return containsLegacyBrand(value) ? fallback : textValue(value, fallback);
+}
+
+function aboutMediaValue(value: string | null | undefined) {
+  return containsLegacyMedia(value) ? null : value ?? null;
+}
+
 function nonEmptyTextValue(value: string | null | undefined, fallback: string) {
   return value?.trim() ? value : fallback;
 }
 
 export function resolveAboutSettings(settings: AboutSettingsRecord) {
-  const effectiveSettings = isLegacyAboutSettings(settings) ? null : settings;
-  const imageUrl = effectiveSettings
-    ? effectiveSettings.imageWebUrl ?? effectiveSettings.imageUrl ?? null
-    : defaultAboutSettings.imageUrl;
+  if (!settings) return defaultAboutSettings;
+
+  const imageUrl = aboutMediaValue(settings.imageWebUrl) ?? aboutMediaValue(settings.imageUrl);
 
   return {
     ...defaultAboutSettings,
-    ...effectiveSettings,
-    eyebrowTr: textValue(effectiveSettings?.eyebrowTr, defaultAboutSettings.eyebrowTr),
-    eyebrowEn: textValue(effectiveSettings?.eyebrowEn, defaultAboutSettings.eyebrowEn),
-    titleTr: textValue(effectiveSettings?.titleTr, defaultAboutSettings.titleTr),
-    titleEn: textValue(effectiveSettings?.titleEn, defaultAboutSettings.titleEn),
-    descriptionTr: textValue(effectiveSettings?.descriptionTr, defaultAboutSettings.descriptionTr),
-    descriptionEn: textValue(effectiveSettings?.descriptionEn, defaultAboutSettings.descriptionEn),
+    ...settings,
+    eyebrowTr: aboutTextValue(settings.eyebrowTr, defaultAboutSettings.eyebrowTr),
+    eyebrowEn: aboutTextValue(settings.eyebrowEn, defaultAboutSettings.eyebrowEn),
+    titleTr: aboutTextValue(settings.titleTr, defaultAboutSettings.titleTr),
+    titleEn: aboutTextValue(settings.titleEn, defaultAboutSettings.titleEn),
+    descriptionTr: aboutTextValue(settings.descriptionTr, defaultAboutSettings.descriptionTr),
+    descriptionEn: aboutTextValue(settings.descriptionEn, defaultAboutSettings.descriptionEn),
     imageUrl,
-    approachLabelTr: textValue(effectiveSettings?.approachLabelTr, defaultAboutSettings.approachLabelTr),
-    approachLabelEn: textValue(effectiveSettings?.approachLabelEn, defaultAboutSettings.approachLabelEn),
-    approachTitleTr: textValue(effectiveSettings?.approachTitleTr, defaultAboutSettings.approachTitleTr),
-    approachTitleEn: textValue(effectiveSettings?.approachTitleEn, defaultAboutSettings.approachTitleEn),
-    materialTitleTr: textValue(effectiveSettings?.materialTitleTr, defaultAboutSettings.materialTitleTr),
-    materialTitleEn: textValue(effectiveSettings?.materialTitleEn, defaultAboutSettings.materialTitleEn),
-    materialTextTr: textValue(effectiveSettings?.materialTextTr, defaultAboutSettings.materialTextTr),
-    materialTextEn: textValue(effectiveSettings?.materialTextEn, defaultAboutSettings.materialTextEn),
-    proportionTitleTr: textValue(effectiveSettings?.proportionTitleTr, defaultAboutSettings.proportionTitleTr),
-    proportionTitleEn: textValue(effectiveSettings?.proportionTitleEn, defaultAboutSettings.proportionTitleEn),
-    proportionTextTr: textValue(effectiveSettings?.proportionTextTr, defaultAboutSettings.proportionTextTr),
-    proportionTextEn: textValue(effectiveSettings?.proportionTextEn, defaultAboutSettings.proportionTextEn),
-    narrativeTitleTr: textValue(effectiveSettings?.narrativeTitleTr, defaultAboutSettings.narrativeTitleTr),
-    narrativeTitleEn: textValue(effectiveSettings?.narrativeTitleEn, defaultAboutSettings.narrativeTitleEn),
-    narrativeTextTr: textValue(effectiveSettings?.narrativeTextTr, defaultAboutSettings.narrativeTextTr),
-    narrativeTextEn: textValue(effectiveSettings?.narrativeTextEn, defaultAboutSettings.narrativeTextEn),
+    imageOriginalUrl: aboutMediaValue(settings.imageOriginalUrl),
+    imageWebUrl: aboutMediaValue(settings.imageWebUrl),
+    imageThumbnailUrl: aboutMediaValue(settings.imageThumbnailUrl),
+    approachLabelTr: aboutTextValue(settings.approachLabelTr, defaultAboutSettings.approachLabelTr),
+    approachLabelEn: aboutTextValue(settings.approachLabelEn, defaultAboutSettings.approachLabelEn),
+    approachTitleTr: aboutTextValue(settings.approachTitleTr, defaultAboutSettings.approachTitleTr),
+    approachTitleEn: aboutTextValue(settings.approachTitleEn, defaultAboutSettings.approachTitleEn),
+    materialTitleTr: aboutTextValue(settings.materialTitleTr, defaultAboutSettings.materialTitleTr),
+    materialTitleEn: aboutTextValue(settings.materialTitleEn, defaultAboutSettings.materialTitleEn),
+    materialTextTr: aboutTextValue(settings.materialTextTr, defaultAboutSettings.materialTextTr),
+    materialTextEn: aboutTextValue(settings.materialTextEn, defaultAboutSettings.materialTextEn),
+    proportionTitleTr: aboutTextValue(settings.proportionTitleTr, defaultAboutSettings.proportionTitleTr),
+    proportionTitleEn: aboutTextValue(settings.proportionTitleEn, defaultAboutSettings.proportionTitleEn),
+    proportionTextTr: aboutTextValue(settings.proportionTextTr, defaultAboutSettings.proportionTextTr),
+    proportionTextEn: aboutTextValue(settings.proportionTextEn, defaultAboutSettings.proportionTextEn),
+    narrativeTitleTr: aboutTextValue(settings.narrativeTitleTr, defaultAboutSettings.narrativeTitleTr),
+    narrativeTitleEn: aboutTextValue(settings.narrativeTitleEn, defaultAboutSettings.narrativeTitleEn),
+    narrativeTextTr: aboutTextValue(settings.narrativeTextTr, defaultAboutSettings.narrativeTextTr),
+    narrativeTextEn: aboutTextValue(settings.narrativeTextEn, defaultAboutSettings.narrativeTextEn),
   };
 }
 
@@ -297,17 +307,6 @@ function containsLegacyBrand(value?: string | null) {
 
 function containsLegacyMedia(value?: string | null) {
   return Boolean(value && /architecture-/i.test(value));
-}
-
-function isLegacyAboutSettings(settings: AboutSettingsRecord) {
-  return Boolean(
-    settings &&
-      (containsLegacyBrand(settings.titleTr) ||
-        containsLegacyBrand(settings.titleEn) ||
-        containsLegacyBrand(settings.descriptionTr) ||
-        containsLegacyBrand(settings.descriptionEn) ||
-        containsLegacyMedia(settings.imageUrl)),
-  );
 }
 
 function isLegacyContactSettings(settings: ContactSettingsRecord) {

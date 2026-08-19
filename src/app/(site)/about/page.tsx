@@ -1,4 +1,4 @@
-import { SmartImage } from "@/components/SmartImage";
+import { AboutImage } from "@/components/AboutImage";
 import { getServerLanguage } from "@/lib/i18n-server";
 import { BRAND_NAME, toLanguageUppercase } from "@/lib/i18n";
 import { prisma } from "@/lib/prisma";
@@ -10,6 +10,7 @@ import {
 import { createPageMetadata, pageSeo } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export async function generateMetadata() {
   const language = await getServerLanguage();
@@ -45,19 +46,13 @@ export default async function AboutPage() {
             </p>
           </div>
 
-          {(settings.imageWebUrl ?? settings.imageUrl ?? settings.imageOriginalUrl) && (
-            <div className="relative aspect-[4/3] overflow-hidden bg-stone">
-              <SmartImage
-                src={settings.imageWebUrl ?? settings.imageUrl ?? settings.imageOriginalUrl!}
-                sources={[settings.imageUrl, settings.imageOriginalUrl]}
-                alt={`${BRAND_NAME} construction company`}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                loading="lazy"
-              />
-            </div>
-          )}
+          <AboutImage
+            imageWebUrl={settings.imageWebUrl}
+            imageThumbnailUrl={settings.imageThumbnailUrl}
+            imageOriginalUrl={settings.imageOriginalUrl}
+            imageUrl={settings.imageUrl}
+            alt={`${BRAND_NAME} construction company`}
+          />
         </div>
       </section>
 

@@ -18,6 +18,7 @@ type NativeImageProps = Omit<
 export type SmartImageProps = NativeImageProps & {
   src: string;
   sources?: Array<string | null | undefined>;
+  retryDelays?: readonly number[];
   fill?: boolean;
   priority?: boolean;
   fallbackLabel?: string;
@@ -45,6 +46,7 @@ function retryUrl(src: string, retry: number): string {
 export function SmartImage({
   src,
   sources = [],
+  retryDelays = RETRY_DELAYS,
   fill = false,
   priority = false,
   fallbackLabel,
@@ -67,10 +69,10 @@ export function SmartImage({
     const normalized = [src, ...sources]
       .map(normalizeMediaUrl)
       .filter((url): url is string => Boolean(url));
-    return [...new Set(normalized)].slice(0, RETRY_DELAYS.length + 1);
+    return [...new Set(normalized)].slice(0, retryDelays.length + 1);
     // sourceKey captures the string values without making callers memoize arrays.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sourceKey]);
+  }, [sourceKey, retryDelays]);
   const [candidateIndex, setCandidateIndex] = useState(0);
   const [retryCount, setRetryCount] = useState(0);
   const [state, setState] = useState<"loading" | "loaded" | "failed">("loading");
@@ -113,7 +115,7 @@ export function SmartImage({
     onError?.(event);
     if (retryTimer.current) return;
 
-    if (retryCount >= RETRY_DELAYS.length) {
+    if (retryCount >= retryDelays.length) {
       setState("failed");
       onFinalError?.();
       return;
@@ -127,7 +129,7 @@ export function SmartImage({
       setCandidateIndex((current) =>
         current + 1 < candidates.length ? current + 1 : current,
       );
-    }, RETRY_DELAYS[retryCount]);
+    }, retryDelays[retryCount]);
   }
 
   if (!effectiveUrl || state === "failed") {
