@@ -25,6 +25,14 @@
     "migrate:uploads-to-r2": "tsx scripts/migrate-uploads-to-r2.ts",
     "migrate:r2-public-url:dry-run": "node scripts/prisma-cli.mjs generate --postgres && tsx scripts/migrate-r2-public-url.ts --dry-run",
     "migrate:r2-public-url": "node scripts/prisma-cli.mjs generate --postgres && tsx scripts/migrate-r2-public-url.ts --execute",
+    "verify:r2-public-url": "node scripts/prisma-cli.mjs generate --postgres && tsx scripts/verify-r2-public-url.ts",
+    "reconcile:production-media": "node scripts/prisma-cli.mjs generate --postgres && tsx scripts/reconcile-production-media-readonly.ts",
+    "restore:project-images:r2": "node scripts/prisma-cli.mjs generate --postgres && tsx scripts/restore-project-images-r2.ts",
+    "migrate:project-images-public-url:dry-run": "node scripts/prisma-cli.mjs generate --postgres && tsx scripts/migrate-project-image-public-url.ts",
+    "migrate:project-images-public-url": "node scripts/prisma-cli.mjs generate --postgres && tsx scripts/migrate-project-image-public-url.ts --execute",
+    "restore:homepage-about:r2": "node scripts/prisma-cli.mjs generate --postgres && tsx scripts/restore-homepage-about-r2.ts",
+    "migrate:about-public-url:dry-run": "node scripts/prisma-cli.mjs generate --postgres && tsx scripts/migrate-about-public-url.ts",
+    "migrate:about-public-url": "node scripts/prisma-cli.mjs generate --postgres && tsx scripts/migrate-about-public-url.ts --execute",
     "postinstall": "node scripts/prisma-cli.mjs generate"
   },
   "dependencies": {
