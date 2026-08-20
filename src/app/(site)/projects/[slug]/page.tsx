@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { MasonryGallery } from "@/components/projects/MasonryGallery";
+import { ProjectVideoPlayer } from "@/components/projects/ProjectVideoPlayer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getServerLanguage } from "@/lib/i18n-server";
 import {
@@ -128,12 +129,9 @@ export default async function ProjectDetailPage({ params }: PageProps) {
                   {t.common.projectVideo}
                 </p>
                 <div className="aspect-video overflow-hidden bg-stone/30">
-                  <video
+                  <ProjectVideoPlayer
                     src={project.pdfUrl}
                     className="h-full w-full object-cover"
-                    controls
-                    playsInline
-                    preload="metadata"
                   />
                 </div>
               </div>

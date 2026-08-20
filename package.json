@@ -33,6 +33,8 @@
     "restore:homepage-about:r2": "node scripts/prisma-cli.mjs generate --postgres && tsx scripts/restore-homepage-about-r2.ts",
     "migrate:about-public-url:dry-run": "node scripts/prisma-cli.mjs generate --postgres && tsx scripts/migrate-about-public-url.ts",
     "migrate:about-public-url": "node scripts/prisma-cli.mjs generate --postgres && tsx scripts/migrate-about-public-url.ts --execute",
+    "migrate:terracepark-video-url:dry-run": "node scripts/prisma-cli.mjs generate --postgres && tsx scripts/migrate-terracepark-video-public-url.ts",
+    "migrate:terracepark-video-url": "node scripts/prisma-cli.mjs generate --postgres && tsx scripts/migrate-terracepark-video-public-url.ts --execute",
     "postinstall": "node scripts/prisma-cli.mjs generate"
   },
   "dependencies": {
