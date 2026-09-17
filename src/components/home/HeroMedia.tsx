@@ -47,7 +47,6 @@ export function HeroMedia({
   const [videoReady, setVideoReady] = useState(false);
   const [sessionVideoReady, setSessionVideoReady] = useState(false);
   const [videoFailed, setVideoFailed] = useState(false);
-  const [videoTimedOut, setVideoTimedOut] = useState(false);
   const [showSoundControl, setShowSoundControl] = useState(false);
 
   useEffect(() => {
@@ -66,7 +65,6 @@ export function HeroMedia({
       Boolean(safeVideoUrl && wasVideoReadyInSession(safeVideoUrl)),
     );
     setVideoFailed(false);
-    setVideoTimedOut(false);
     setShowSoundControl(false);
   }, [imageUrl, mediaType, safeVideoUrl]);
 
@@ -78,15 +76,8 @@ export function HeroMedia({
   );
 
   const showVideo = Boolean(
-    !videoTimedOut &&
-      (videoReady || (isMobile === true && sessionVideoReady)),
+    videoReady || (isMobile === true && sessionVideoReady),
   );
-
-  useEffect(() => {
-    if (!shouldLoadVideo || !isMobile || videoReady) return;
-    const timer = window.setTimeout(() => setVideoTimedOut(true), 3000);
-    return () => window.clearTimeout(timer);
-  }, [isMobile, shouldLoadVideo, videoReady]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -174,11 +165,9 @@ export function HeroMedia({
             playsInline
             preload="metadata"
             onCanPlay={() => {
-              if (!videoTimedOut) {
-                setVideoReady(true);
-                setSessionVideoReady(true);
-                rememberReadyVideo(safeVideoUrl);
-              }
+              setVideoReady(true);
+              setSessionVideoReady(true);
+              rememberReadyVideo(safeVideoUrl);
             }}
             onError={() => setVideoFailed(true)}
           />
