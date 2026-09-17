@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { SmartImage } from "@/components/SmartImage";
 import { normalizeMediaUrl } from "@/lib/media-url";
 
@@ -35,6 +35,7 @@ export function HeroMedia({
   imageSources = [],
   videoUrl,
 }: HeroMediaProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const safeVideoUrl = normalizeMediaUrl(videoUrl);
   const safePosterUrl = normalizeMediaUrl(imageUrl);
   const wantsVideo = Boolean(
@@ -47,6 +48,7 @@ export function HeroMedia({
   const [sessionVideoReady, setSessionVideoReady] = useState(false);
   const [videoFailed, setVideoFailed] = useState(false);
   const [videoTimedOut, setVideoTimedOut] = useState(false);
+  const [showSoundControl, setShowSoundControl] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 767px), (pointer: coarse)");
@@ -65,6 +67,7 @@ export function HeroMedia({
     );
     setVideoFailed(false);
     setVideoTimedOut(false);
+    setShowSoundControl(false);
   }, [imageUrl, mediaType, safeVideoUrl]);
 
   const shouldLoadVideo = Boolean(
@@ -84,6 +87,55 @@ export function HeroMedia({
     const timer = window.setTimeout(() => setVideoTimedOut(true), 3000);
     return () => window.clearTimeout(timer);
   }, [isMobile, shouldLoadVideo, videoReady]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!shouldLoadVideo || !safeVideoUrl || !video) return;
+
+    const videoElement = video;
+    let cancelled = false;
+
+    async function attemptAutoplay() {
+      videoElement.muted = false;
+      videoElement.defaultMuted = false;
+
+      try {
+        await videoElement.play();
+        if (!cancelled) setShowSoundControl(false);
+        return;
+      } catch {
+        if (cancelled) return;
+      }
+
+      videoElement.muted = true;
+
+      try {
+        await videoElement.play();
+        if (!cancelled) setShowSoundControl(true);
+      } catch {
+        if (!cancelled) setShowSoundControl(false);
+      }
+    }
+
+    void attemptAutoplay();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [safeVideoUrl, shouldLoadVideo]);
+
+  function enableSound() {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = false;
+    video.defaultMuted = false;
+    setShowSoundControl(false);
+    void video.play().catch(() => {
+      video.muted = true;
+      setShowSoundControl(true);
+    });
+  }
 
   return (
     <>
@@ -108,27 +160,39 @@ export function HeroMedia({
       ) : null}
 
       {shouldLoadVideo && safeVideoUrl ? (
-        <video
-          key={safeVideoUrl}
-          src={safeVideoUrl}
-          poster={safePosterUrl ?? undefined}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
-            showVideo ? "opacity-100" : "opacity-0"
-          }`}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          onCanPlay={() => {
-            if (!videoTimedOut) {
-              setVideoReady(true);
-              setSessionVideoReady(true);
-              rememberReadyVideo(safeVideoUrl);
-            }
-          }}
-          onError={() => setVideoFailed(true)}
-        />
+        <>
+          <video
+            ref={videoRef}
+            key={safeVideoUrl}
+            src={safeVideoUrl}
+            poster={safePosterUrl ?? undefined}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+              showVideo ? "opacity-100" : "opacity-0"
+            }`}
+            autoPlay
+            loop
+            playsInline
+            preload="metadata"
+            onCanPlay={() => {
+              if (!videoTimedOut) {
+                setVideoReady(true);
+                setSessionVideoReady(true);
+                rememberReadyVideo(safeVideoUrl);
+              }
+            }}
+            onError={() => setVideoFailed(true)}
+          />
+          {showSoundControl && showVideo ? (
+            <button
+              type="button"
+              onClick={enableSound}
+              className="absolute bottom-6 right-6 z-20 border border-cream/60 bg-charcoal/55 px-4 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-cream backdrop-blur-sm transition-colors hover:border-accent hover:text-accent"
+              aria-label="Unmute homepage video"
+            >
+              Sound
+            </button>
+          ) : null}
+        </>
       ) : null}
     </>
   );
