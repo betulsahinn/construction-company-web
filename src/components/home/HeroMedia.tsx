@@ -87,18 +87,8 @@ export function HeroMedia({
     let cancelled = false;
 
     async function attemptAutoplay() {
-      videoElement.muted = false;
-      videoElement.defaultMuted = false;
-
-      try {
-        await videoElement.play();
-        if (!cancelled) setShowSoundControl(false);
-        return;
-      } catch {
-        if (cancelled) return;
-      }
-
       videoElement.muted = true;
+      videoElement.defaultMuted = true;
 
       try {
         await videoElement.play();
@@ -126,6 +116,12 @@ export function HeroMedia({
       video.muted = true;
       setShowSoundControl(true);
     });
+  }
+
+  function markVideoReady() {
+    setVideoReady(true);
+    setSessionVideoReady(true);
+    if (safeVideoUrl) rememberReadyVideo(safeVideoUrl);
   }
 
   return (
@@ -162,13 +158,12 @@ export function HeroMedia({
             }`}
             autoPlay
             loop
+            muted
             playsInline
-            preload="metadata"
-            onCanPlay={() => {
-              setVideoReady(true);
-              setSessionVideoReady(true);
-              rememberReadyVideo(safeVideoUrl);
-            }}
+            preload="auto"
+            onLoadedData={markVideoReady}
+            onCanPlay={markVideoReady}
+            onPlaying={markVideoReady}
             onError={() => setVideoFailed(true)}
           />
           {showSoundControl && showVideo ? (
